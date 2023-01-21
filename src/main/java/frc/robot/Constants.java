@@ -17,12 +17,12 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
   //PWM's for wiring team
-public static final int LEFT_FRONT = 0;
-public static final int RIGHT_FRONT = 1;
-public static final int LEFT_BACK = 2;
-public static final int RIGHT_BACK = 3;
-public static final int SHOOTER = 4;
-public static final int INTAKE = 5;
+public static final int LEFT_FRONT = 2;
+public static final int RIGHT_FRONT = 5;
+public static final int LEFT_BACK = 3;
+public static final int RIGHT_BACK = 4;
+public static final int SHOOTER = 7;
+public static final int INTAKE = 6;
 
 //Analog inputs
 public static final int RANGE_FINDER = 0;
