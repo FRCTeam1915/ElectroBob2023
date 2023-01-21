@@ -4,6 +4,9 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -13,10 +16,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
-  Spark leftFront;
-  Spark rightFront;
-  Spark leftBack;
-  Spark rightBack;
+  CANSparkMax leftFront;
+  CANSparkMax rightFront;
+  CANSparkMax leftBack;
+  CANSparkMax rightBack;
   MotorControllerGroup leftMotors;
   MotorControllerGroup rightMotors;
   DifferentialDrive drive;
@@ -25,6 +28,7 @@ public class DriveTrain extends SubsystemBase {
   
   /** Creates a new DriveTrain. */
   public DriveTrain() {
+    /**
     leftFront = new Spark(Constants.LEFT_FRONT);
     leftFront.setInverted(false);
     rightFront = new Spark(Constants.RIGHT_FRONT);
@@ -33,9 +37,22 @@ public class DriveTrain extends SubsystemBase {
     leftBack.setInverted(false);
     rightBack = new Spark(Constants.RIGHT_BACK);
     rightBack.setInverted(false);
+    */
+
+    leftFront = new CANSparkMax(Constants.LEFT_FRONT, MotorType.kBrushless);
+    leftFront.setInverted(false);
+    rightFront = new CANSparkMax(Constants.RIGHT_FRONT, MotorType.kBrushless);
+    rightFront.setInverted(false);
+    leftBack = new CANSparkMax(Constants.LEFT_BACK, MotorType.kBrushless);
+    leftBack.setInverted(false);
+    rightBack = new CANSparkMax(Constants.RIGHT_BACK, MotorType.kBrushless);
+    rightBack.setInverted(false);
 
     leftMotors = new MotorControllerGroup(leftFront,leftBack);
     rightMotors = new MotorControllerGroup(rightFront,rightBack);
+
+
+
     drive = new DifferentialDrive(leftMotors,rightMotors);
     rangeFinder = new AnalogInput(Constants.RANGE_FINDER);
   }
