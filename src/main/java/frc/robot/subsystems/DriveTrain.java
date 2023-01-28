@@ -15,11 +15,22 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+import com.ctre.phoenix.motorcontrol.Faults;
+import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 public class DriveTrain extends SubsystemBase {
+
   CANSparkMax leftFront;
   CANSparkMax rightFront;
   CANSparkMax leftBack;
   CANSparkMax rightBack;
+/**
+  WPI_TalonSRX rightFront;
+  WPI_TalonSRX rightBack;
+  WPI_TalonSRX leftFront;
+  WPI_TalonSRX leftBack;
+*/
   MotorControllerGroup leftMotors;
   MotorControllerGroup rightMotors;
   DifferentialDrive drive;
@@ -48,9 +59,16 @@ public class DriveTrain extends SubsystemBase {
     rightBack = new CANSparkMax(Constants.RIGHT_BACK, MotorType.kBrushless);
     rightBack.setInverted(false);
 
+    /**
     leftMotors = new MotorControllerGroup(leftFront,leftBack);
     rightMotors = new MotorControllerGroup(rightFront,rightBack);
+    
 
+    leftFront = new WPI_TalonSRX(5);    
+    rightFront = new WPI_TalonSRX(6);    
+    */
+    leftMotors = new MotorControllerGroup(leftFront);
+    rightMotors = new MotorControllerGroup(rightFront);
 
 
     drive = new DifferentialDrive(leftMotors,rightMotors);
