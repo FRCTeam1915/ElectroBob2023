@@ -90,7 +90,7 @@ public class RobotContainer {
     driveToDistance = new DriveToDistance(driveTrain);
     driveToDistance.addRequirements(driveTrain);
 
-    driverJoystick = new XboxController(Constants.JOYSTICK_NUMBER);
+    driverJoystick = new XboxController(Constants.JOYSTICK_NUMBER); //
 
     shooter = new Shooter();
     shootBall = new ShootBall(shooter);
@@ -112,8 +112,8 @@ public class RobotContainer {
     chooser.setDefaultOption("Autonomous One", autonomousOne);
     SmartDashboard.putData("Autonomous", chooser);
 
-    UsbCamera camera = CameraServer.startAutomaticCapture();
-    camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
+    //UsbCamera camera = CameraServer.startAutomaticCapture();
+    //camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
 
     // Configure the trigger bindings
     configureBindings();
@@ -121,7 +121,7 @@ public class RobotContainer {
 
   /**
    * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
+   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary 
    * predicate, or via the named factories in {@link
    * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
    * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
