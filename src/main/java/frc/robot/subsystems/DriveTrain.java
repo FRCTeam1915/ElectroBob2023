@@ -20,17 +20,17 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class DriveTrain extends SubsystemBase {
-
+/**
   CANSparkMax leftFront;
   CANSparkMax rightFront;
   CANSparkMax leftBack;
   CANSparkMax rightBack;
-/**
+*/
   WPI_TalonSRX rightFront;
   WPI_TalonSRX rightBack;
   WPI_TalonSRX leftFront;
   WPI_TalonSRX leftBack;
-*/
+
   MotorControllerGroup leftMotors;
   MotorControllerGroup rightMotors;
   DifferentialDrive drive;
@@ -48,25 +48,25 @@ public class DriveTrain extends SubsystemBase {
     leftBack.setInverted(false);
     rightBack = new Spark(Constants.RIGHT_BACK);
     rightBack.setInverted(false);
-    */
+    
 
-    leftFront = new CANSparkMax(Constants.LEFT_FRONT, MotorType.kBrushless);
+    leftFront = new CANSparkMax(Constants.LEFT_FRONT, MotorType.kBrushed);
     leftFront.setInverted(false);
-    rightFront = new CANSparkMax(Constants.RIGHT_FRONT, MotorType.kBrushless);
+    rightFront = new CANSparkMax(Constants.RIGHT_FRONT, MotorType.kBrushed);
     rightFront.setInverted(false);
     leftBack = new CANSparkMax(Constants.LEFT_BACK, MotorType.kBrushless);
     leftBack.setInverted(false);
     rightBack = new CANSparkMax(Constants.RIGHT_BACK, MotorType.kBrushless);
     rightBack.setInverted(false);
-
-    /**
+    */
+    
     leftMotors = new MotorControllerGroup(leftFront,leftBack);
     rightMotors = new MotorControllerGroup(rightFront,rightBack);
     
 
     leftFront = new WPI_TalonSRX(5);    
-    rightFront = new WPI_TalonSRX(6);    
-    */
+    rightFront = new WPI_TalonSRX(8);    
+    
     leftMotors = new MotorControllerGroup(leftFront);
     rightMotors = new MotorControllerGroup(rightFront);
 

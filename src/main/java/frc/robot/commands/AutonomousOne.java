@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 
@@ -15,8 +16,8 @@ import frc.robot.subsystems.Shooter;
 
 public class AutonomousOne extends SequentialCommandGroup {
   /** Creates a new AutonomousOne. */
-  public AutonomousOne(DriveTrain dt, Shooter s) {
-    addCommands(new DriveForwardTimed(dt), new AutoShoot(s));
+  public AutonomousOne(DriveSubsystem driveTrain, Shooter s) {
+    addCommands(new DriveForwardTimed(driveTrain), new AutoShoot(s));
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     
