@@ -15,7 +15,7 @@ import frc.robot.subsystems.Shooter;
 
 
 public class AutonomousOne extends SequentialCommandGroup {
-  /** Creates a new AutonomousOne. */
+  //Creates a new AutonomousOne.
   public AutonomousOne(DriveSubsystem driveTrain, Shooter s) {
     addCommands(new DriveForwardTimed(driveTrain), new AutoShoot(s));
     // Add your commands in the addCommands() call, e.g.
@@ -23,3 +23,5 @@ public class AutonomousOne extends SequentialCommandGroup {
     
   }
 }
+
+

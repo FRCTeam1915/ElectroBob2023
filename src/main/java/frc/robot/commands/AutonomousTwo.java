@@ -15,10 +15,11 @@ import frc.robot.subsystems.Shooter;
 
 
 public class AutonomousTwo extends SequentialCommandGroup {
-  /** Creates a new AutonomousTwo. */
+  //Creates a new AutonomousTwo
   public AutonomousTwo(DriveSubsystem driveTrain, Shooter s) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(new DriveToDistance(driveTrain), new AutoShoot(s));
   }
 }
+

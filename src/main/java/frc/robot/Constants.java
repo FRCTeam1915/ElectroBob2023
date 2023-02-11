@@ -27,9 +27,9 @@ public final class Constants {
     public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
 
     // Chassis configuration
-    public static final double kTrackWidth = Units.inchesToMeters(18.5);
+    public static final double kTrackWidth = Units.inchesToMeters(18.5625);
     // Distance between centers of right and left wheels on robot
-    public static final double kWheelBase = Units.inchesToMeters(32.5);
+    public static final double kWheelBase = Units.inchesToMeters(32.5625);
     // Distance between front and back wheels on robot
     public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
         new Translation2d(kWheelBase / 2, kTrackWidth / 2),
@@ -100,8 +100,8 @@ public final class Constants {
     public static final double kTurningMinOutput = -1;
     public static final double kTurningMaxOutput = 1;
 
-    public static final IdleMode kDrivingMotorIdleMode = IdleMode.kBrake;
-    public static final IdleMode kTurningMotorIdleMode = IdleMode.kBrake;
+    public static final IdleMode kDrivingMotorIdleMode = IdleMode.kCoast;
+    public static final IdleMode kTurningMotorIdleMode = IdleMode.kCoast;
 
     public static final int kDrivingMotorCurrentLimit = 50; // amps
     public static final int kTurningMotorCurrentLimit = 20; // amps
@@ -113,7 +113,7 @@ public final class Constants {
 
   public static final class AutoConstants {
     public static final double kMaxSpeedMetersPerSecond = 3;
-    public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 1;
     public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
     public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
@@ -133,10 +133,10 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
   }
   //PWM's for wiring team
-public static final int LEFT_FRONT = 5;
-public static final int RIGHT_FRONT = 8;
-public static final int LEFT_BACK = 1;
-public static final int RIGHT_BACK = 3;
+//public static final int LEFT_FRONT = 5;
+//public static final int RIGHT_FRONT = 8;
+//public static final int LEFT_BACK = 1;
+//public static final int RIGHT_BACK = 3;
 public static final int SHOOTER = 4;
 public static final int INTAKE = 7;
 
@@ -150,7 +150,7 @@ public static final int XBOX_LEFT_X_AXIS = 0;
 public static final int RIGHT_TRIGGER = 3;
 public static final double DRIVETRAINSPEED = 1;
 public static final double AUTONOMOUS_SPEED = 0.4;
-public static final double DRIVE_FORWARD_TIME = 3.0;
+public static final double DRIVE_FORWARD_TIME = 5.0;
 public static final int JOYSTICK_NUMBER = 1;
 public static final double SHOOTER_SPEED = .5;
 public static final double INTAKE_SPEED = .7;

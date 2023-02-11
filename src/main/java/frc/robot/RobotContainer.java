@@ -6,17 +6,17 @@ package frc.robot;
 
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.AutoShoot;
-import frc.robot.commands.AutonomousOne;
-import frc.robot.commands.AutonomousTwo;
+//import frc.robot.commands.AutoShoot;
+//import frc.robot.commands.AutonomousOne;
+//import frc.robot.commands.AutonomousTwo;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.commands.IntakeBall;
-import frc.robot.commands.ShootBall;
+//import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
+//import frc.robot.subsystems.Shooter;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveToDistance;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -53,15 +53,15 @@ public class RobotContainer {
   private final DriveToDistance driveToDistance;
   public static XboxController driverJoystick;
 
-  private final Shooter shooter;
-  private final ShootBall shootBall;
-  private final AutoShoot autoShoot;
+  //private final Shooter shooter;
+  //private final ShootBall shootBall;
+  //private final AutoShoot autoShoot;
 
   private final Intake intake;
   private final IntakeBall intakeBall;
 
-  private final AutonomousOne autonomousOne;
-  private final AutonomousTwo autonomousTwo;
+  //private final AutonomousOne autonomousOne;
+  //private final AutonomousTwo autonomousTwo;
 
   SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -78,10 +78,10 @@ public class RobotContainer {
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
             () -> driveTrain.drive(
-                MathUtil.applyDeadband(-m_driverController.getLeftY(), 0.06),
-                MathUtil.applyDeadband(-m_driverController.getLeftX(), 0.06),
-                MathUtil.applyDeadband(-m_driverController.getRightX(), 0.06),
-                true),
+                MathUtil.applyDeadband(-m_driverController.getLeftY(), 0.15),
+                //MathUtil.applyDeadband(-m_driverController.getLeftX(), 0.15),
+                //MathUtil.applyDeadband(-m_driverController.getRightX(), 0.1),
+                0, 0, true),
             driveTrain));
 
     driveForwardTimed = new DriveForwardTimed(driveTrain);
@@ -92,26 +92,27 @@ public class RobotContainer {
 
     driverJoystick = new XboxController(Constants.JOYSTICK_NUMBER); //
 
+    /**
     shooter = new Shooter();
     shootBall = new ShootBall(shooter);
     shootBall.addRequirements(shooter);
 
     autoShoot = new AutoShoot(shooter);
     autoShoot.addRequirements(shooter);
-
+    */
 
     intake = new Intake();
     intakeBall = new IntakeBall(intake);
     intakeBall.addRequirements(intake);
     intake.setDefaultCommand(intakeBall);
-
+/**     //Autonomous Mode
     autonomousOne = new AutonomousOne(driveTrain, shooter);
     autonomousTwo =  new AutonomousTwo(driveTrain, shooter);
 
     chooser.addOption("Autonomous Two", autonomousTwo);
     chooser.setDefaultOption("Autonomous One", autonomousOne);
     SmartDashboard.putData("Autonomous", chooser);
-
+*/
     //UsbCamera camera = CameraServer.startAutomaticCapture();
     //camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
 
@@ -129,11 +130,11 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    JoystickButton shootButton = new JoystickButton(driverJoystick, XboxController.Button.kRightBumper.value);
-    shootButton.whileHeld(new ShootBall(shooter));
+    // JoystickButton shootButton = new JoystickButton(driverJoystick, XboxController.Button.kRightBumper.value);
+    // shootButton.whileHeld(new ShootBall(shooter));
 
-    JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
-    aButton.whenPressed(new DriveToDistance(driveTrain));
+    // JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
+    // aButton.whenPressed(new DriveToDistance(driveTrain));
   }
 
   /**
@@ -143,6 +144,13 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return chooser.getSelected();
+    //return chooser.getSelected();
+    return new RunCommand(
+            () -> driveTrain.drive(
+                0,
+                0,
+                0.2,
+                true),
+            driveTrain);
   }
 }

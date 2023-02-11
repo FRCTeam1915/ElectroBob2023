@@ -13,7 +13,7 @@ public class AutoShoot extends CommandBase {
   Shooter shooter;
   Timer timer;
   private boolean finish = false;
-  /** Creates a new AutoShoot. */
+  // Creates a new AutoShoot. 
   public AutoShoot(Shooter s) {
     shooter = s;
     addRequirements(shooter);
