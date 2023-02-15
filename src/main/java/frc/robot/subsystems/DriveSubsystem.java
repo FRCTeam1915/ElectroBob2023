@@ -11,6 +11,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
@@ -25,7 +26,7 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kFrontLeftTurningCanId,
       DriveConstants.kFrontLeftChassisAngularOffset);
 
-  private final MAXSwerveModule m_frontRight = new MAXSwerveModule(
+  public final MAXSwerveModule m_frontRight = new MAXSwerveModule(
       DriveConstants.kFrontRightDrivingCanId,
       DriveConstants.kFrontRightTurningCanId,
       DriveConstants.kFrontRightChassisAngularOffset);
@@ -41,7 +42,7 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kBackRightChassisAngularOffset);
 
   // The gyro sensor
-  public final static ADIS16470_IMU m_gyro = new ADIS16470_IMU();
+  private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
 
   //private final AHRS m_gyro = new AHRS(SPI.Port.kMXP); 
   
@@ -59,6 +60,11 @@ public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
     //Shuffleboard.getTab("SmartDashboard").add(m_gyro);
+    Shuffleboard.getTab("SmartDashboard").add("WatchaLookinAtBob",m_gyro);
+    Shuffleboard.getTab("SwerveBob").add("FrontRightTurnAngleBob",MathUtil.inputModulus(m_frontRight.getPosition().angle.getDegrees(),-180,180));
+    Shuffleboard.getTab("SwerveBob").add("RearRightTurnAngleBob",MathUtil.inputModulus(m_rearRight.getPosition().angle.getDegrees(),-180,180));
+    Shuffleboard.getTab("SwerveBob").add("FrontLeftTurnAngleBob",MathUtil.inputModulus(m_frontLeft.getPosition().angle.getDegrees(),-180,180));
+    Shuffleboard.getTab("SwerveBob").add("RearLeftTurnAngleBob",MathUtil.inputModulus(m_rearLeft.getPosition().angle.getDegrees(),-180,180));
 
   }
 

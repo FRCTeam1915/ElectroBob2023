@@ -36,7 +36,35 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
+      "/LiveWindow/Ungrouped/Spark[7]": "Motor Controller",
+      "/Shuffleboard/SmartDashboard/WatchaLookinAtBob": "Gyro",
       "/SmartDashboard/Autonomous": "String Chooser"
+    }
+  },
+  "NetworkTables": {
+    "Retained Values": {
+      "open": false
+    },
+    "transitory": {
+      "LiveWindow": {
+        "DriveSubsystem": {
+          "open": true
+        },
+        "open": true
+      },
+      "Shuffleboard": {
+        "SmartDashboard": {
+          "WatchaLookinAtBob": {
+            "open": true
+          },
+          "open": true
+        },
+        "SwerveBob": {
+          "open": true
+        },
+        "open": true
+      }
     }
   }
 }
