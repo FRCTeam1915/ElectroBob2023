@@ -42,8 +42,11 @@ public class DriveSubsystem extends SubsystemBase {
 
   // The gyro sensor
   //private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
+  public final static
+    ADIS16470_IMU m_gyro = new
+    ADIS16470_IMU();
 
-  private final AHRS m_gyro = new AHRS(SPI.Port.kMXP); 
+  //private final AHRS m_gyro = new AHRS(SPI.Port.kMXP); 
   
   // Odometry class for tracking robot pose
   SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(
@@ -132,12 +135,14 @@ public class DriveSubsystem extends SubsystemBase {
   /**
    * Sets the wheels into an X formation to prevent movement.
    */
+  
   public void setX() {
     m_frontLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
     m_frontRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
     m_rearLeft.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(-45)));
     m_rearRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
   }
+
 
   /**
    * Sets the swerve ModuleStates.

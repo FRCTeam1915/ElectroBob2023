@@ -11,7 +11,7 @@ import frc.robot.Constants.OperatorConstants;
 //import frc.robot.commands.AutonomousTwo;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DriveWithJoysticks;
-import frc.robot.commands.IntakeBall;
+//import frc.robot.commands.IntakeBall;
 //import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.DriveTrain;
@@ -58,7 +58,7 @@ public class RobotContainer {
   //private final AutoShoot autoShoot;
 
   private final Intake intake;
-  private final IntakeBall intakeBall;
+  //private final IntakeBall intakeBall;
 
   //private final AutonomousOne autonomousOne;
   //private final AutonomousTwo autonomousTwo;
@@ -78,10 +78,10 @@ public class RobotContainer {
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
             () -> driveTrain.drive(
-                MathUtil.applyDeadband(-m_driverController.getLeftY(), 0.15),
-                //MathUtil.applyDeadband(-m_driverController.getLeftX(), 0.15),
-                //MathUtil.applyDeadband(-m_driverController.getRightX(), 0.1),
-                0, 0, true),
+                MathUtil.applyDeadband(-m_driverController.getLeftY(), OIConstants.kDriveDeadband),
+                MathUtil.applyDeadband(-m_driverController.getLeftX(), OIConstants.kDriveDeadband),
+                MathUtil.applyDeadband(-m_driverController.getRightX(), OIConstants.kDriveDeadband),
+                true),
             driveTrain));
 
     driveForwardTimed = new DriveForwardTimed(driveTrain);
@@ -102,9 +102,11 @@ public class RobotContainer {
     */
 
     intake = new Intake();
-    intakeBall = new IntakeBall(intake);
-    intakeBall.addRequirements(intake);
-    intake.setDefaultCommand(intakeBall);
+
+    //intakeBall = new IntakeBall(intake);
+    //intakeBall.addRequirements(intake);
+    //intake.setDefaultCommand(intakeBall);
+
 /**     //Autonomous Mode
     autonomousOne = new AutonomousOne(driveTrain, shooter);
     autonomousTwo =  new AutonomousTwo(driveTrain, shooter);

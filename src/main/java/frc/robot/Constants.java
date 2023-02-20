@@ -25,6 +25,9 @@ public final class Constants {
     // the robot, rather the allowed maximum speeds
     public static final double kMaxSpeedMetersPerSecond = 4.8;
     public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
+    public static final double kDirectionSlewRate = 1.2;
+    public static final double kMagnitudeSlewRate = 1.8;
+    public static final double kRotationalSlewRate = 2.0;
 
     // Chassis configuration
     public static final double kTrackWidth = Units.inchesToMeters(18.5625);
@@ -47,12 +50,12 @@ public final class Constants {
     public static final int kFrontLeftDrivingCanId = 11;
     public static final int kRearLeftDrivingCanId = 13;
     public static final int kFrontRightDrivingCanId = 15;
-    public static final int kRearRightDrivingCanId = 17;
+    public static final int kRearRightDrivingCanId = 16;
 
     public static final int kFrontLeftTurningCanId = 10;
     public static final int kRearLeftTurningCanId = 12;
     public static final int kFrontRightTurningCanId = 14;
-    public static final int kRearRightTurningCanId = 16;
+    public static final int kRearRightTurningCanId = 17;
 
     public static final boolean kGyroReversed = false;
   }
@@ -93,7 +96,7 @@ public final class Constants {
     public static final double kDrivingMinOutput = -1;
     public static final double kDrivingMaxOutput = 1;
 
-    public static final double kTurningP = 1;
+    public static final double kTurningP = 1; //subject to change
     public static final double kTurningI = 0;
     public static final double kTurningD = 0;
     public static final double kTurningFF = 0;
@@ -109,6 +112,7 @@ public final class Constants {
 
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
+    public static final double kDriveDeadband = 0.05;
   }
 
   public static final class AutoConstants {
@@ -158,6 +162,19 @@ public static final int CAMERA_RES_X = 320;
 public static final int CAMERA_RES_Y = 240;
 public static final double AUTO_SHOOT_TIME = 2.0;
 public static final double SETPOINT_FORWARD = 1.5;
+
+public static final class Intake {
+  public static final int CAN_low = 0;
+  public static final double kPlow = 0;
+  public static final double kIlow = 0;
+  public static final double kPhigh = 0;
+  public static final double kIhigh = 0;
+  public static final double kDhigh = 0;
+  public static final double Position_A_LOW = 0;
+  public static final double kDlow = 0;
+  public static final int CAN_high = 0;
+}
+
 
 
 }
