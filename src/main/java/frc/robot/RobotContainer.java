@@ -11,6 +11,8 @@ import frc.robot.Constants.OperatorConstants;
 //import frc.robot.commands.AutonomousTwo;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DriveWithJoysticks;
+import frc.robot.commands.IntakeBall;
+import frc.robot.commands.MoveIntakeA;
 //import frc.robot.commands.IntakeBall;
 //import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.DriveSubsystem;
@@ -58,7 +60,7 @@ public class RobotContainer {
   //private final AutoShoot autoShoot;
 
   private final Intake intake;
-  //private final IntakeBall intakeBall;
+  private final IntakeBall intakeBall;
 
   //private final AutonomousOne autonomousOne;
   //private final AutonomousTwo autonomousTwo;
@@ -84,6 +86,8 @@ public class RobotContainer {
                 true),
             driveTrain));
 
+    
+
     driveForwardTimed = new DriveForwardTimed(driveTrain);
     driveForwardTimed.addRequirements(driveTrain);
 
@@ -103,9 +107,9 @@ public class RobotContainer {
 
     intake = new Intake();
 
-    //intakeBall = new IntakeBall(intake);
-    //intakeBall.addRequirements(intake);
-    //intake.setDefaultCommand(intakeBall);
+    intakeBall = new IntakeBall(intake);
+    intakeBall.addRequirements(intake);
+    intake.setDefaultCommand(intakeBall);
 
 /**     //Autonomous Mode
     autonomousOne = new AutonomousOne(driveTrain, shooter);
@@ -132,9 +136,15 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    // JoystickButton shootButton = new JoystickButton(driverJoystick, XboxController.Button.kRightBumper.value);
-    // shootButton.whileHeld(new ShootBall(shooter));
+    Trigger xButton = m_driverController.x();
+    //xButton.onTrue(new ShootBall(shooter).repeatedly());
+    xButton.onTrue(new MoveIntakeA(intake));
 
+    //Trigger rightBumper = m_driverController.rightBumper();
+    //rightBumper.onTrue(new ShootBall(shooter).repeatedly());
+
+    Trigger aButton = m_driverController.a();
+    aButton.onTrue(new DriveToDistance(driveTrain).repeatedly());
     // JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
     // aButton.whenPressed(new DriveToDistance(driveTrain));
   }

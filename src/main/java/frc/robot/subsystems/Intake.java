@@ -21,7 +21,8 @@ import frc.robot.Constants;
 public class Intake extends SubsystemBase {
   Spark intake;
   private CANSparkMax m_motor_low, m_motor_high;
-  private SparkMaxPIDController m_pid_low, m_pid_high;
+  public static SparkMaxPIDController m_pid_low;
+  private SparkMaxPIDController m_pid_high;
 
   private RelativeEncoder m_encoder_low, m_encoder_high;
 
@@ -30,8 +31,10 @@ public class Intake extends SubsystemBase {
     intake = new Spark(Constants.INTAKE);
     m_motor_low = new CANSparkMax(Constants.Intake.CAN_low, MotorType.kBrushless);
     m_motor_high = new CANSparkMax(Constants.Intake.CAN_high, MotorType.kBrushless);
-    m_encoder_low = m_motor_low.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,40960);
-    m_encoder_high = m_motor_high.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,4096);
+//    m_encoder_low = m_motor_low.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,40960);
+//    m_encoder_high = m_motor_high.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,4096);
+    m_encoder_low = m_motor_low.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor,42);
+    m_encoder_high = m_motor_high.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor,42);
 
     m_motor_low.restoreFactoryDefaults();
     m_motor_high.restoreFactoryDefaults();
@@ -56,17 +59,17 @@ public class Intake extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void set_position_A() {
-    m_pid_low.setReference(Constants.Intake.Position_A_LOW, CANSparkMax.ControlType.kPosition);
-  }
+//  public void set_position_A() {
+//    m_pid_low.setReference(Constants.Intake.Position_A_LOW, CANSparkMax.ControlType.kPosition);
+//  }
 
   public void intakeBall(XboxController controller, double speed)
   {
-    intake.set(controller.getRawAxis(Constants.RIGHT_TRIGGER)*speed);
+    m_motor_low.set(controller.getRightTriggerAxis()*speed);
   }
 
   public void stop()
   {
-    intake.set(0);
+    m_motor_low.stopMotor();
   }
 }

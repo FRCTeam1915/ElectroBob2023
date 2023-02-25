@@ -155,24 +155,24 @@ public static final int RIGHT_TRIGGER = 3;
 public static final double DRIVETRAINSPEED = 1;
 public static final double AUTONOMOUS_SPEED = 0.4;
 public static final double DRIVE_FORWARD_TIME = 5.0;
-public static final int JOYSTICK_NUMBER = 1;
+public static final int JOYSTICK_NUMBER = 0;
 public static final double SHOOTER_SPEED = .5;
-public static final double INTAKE_SPEED = .7;
+public static final double INTAKE_SPEED = .25;
 public static final int CAMERA_RES_X = 320;
 public static final int CAMERA_RES_Y = 240;
 public static final double AUTO_SHOOT_TIME = 2.0;
 public static final double SETPOINT_FORWARD = 1.5;
 
 public static final class Intake {
-  public static final int CAN_low = 0;
-  public static final double kPlow = 0;
+  public static final double kPlow = 1;
   public static final double kIlow = 0;
-  public static final double kPhigh = 0;
+  public static final double kDlow = 0;
+  public static final double kPhigh = 1;
   public static final double kIhigh = 0;
   public static final double kDhigh = 0;
   public static final double Position_A_LOW = 0;
-  public static final double kDlow = 0;
-  public static final int CAN_high = 0;
+  public static final int CAN_high = 21;
+  public static final int CAN_low = 22;
 }
 
 
