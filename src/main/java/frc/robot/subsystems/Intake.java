@@ -22,7 +22,7 @@ public class Intake extends SubsystemBase {
   Spark intake;
   private CANSparkMax m_motor_low, m_motor_high;
   public static SparkMaxPIDController m_pid_low;
-  private SparkMaxPIDController m_pid_high;
+  public static SparkMaxPIDController m_pid_high;
 
   private RelativeEncoder m_encoder_low, m_encoder_high;
 
