@@ -164,13 +164,20 @@ public static final double AUTO_SHOOT_TIME = 2.0;
 public static final double SETPOINT_FORWARD = 1.5;
 
 public static final class Intake {
-  public static final double kPlow = 0.1;
-  public static final double kIlow = 1e-4;
-  public static final double kDlow = 1;
+  public static final class A {
+    public static double Position_LOW = 0;
+    public static double Position_HIGH = 10;
+  }
+  public static final class B {
+    public static double Position_LOW = 20;
+    public static double Position_HIGH = 30;
+  }
+  public static final double kPlow = 1;
+  public static final double kIlow = 0;
+  public static final double kDlow = 0;
   public static final double kPhigh = 1;
   public static final double kIhigh = 0;
   public static final double kDhigh = 0;
-  public static final double Position_A_LOW = 0;
   public static final int CAN_high = 21;
   public static final int CAN_low = 22;
 }

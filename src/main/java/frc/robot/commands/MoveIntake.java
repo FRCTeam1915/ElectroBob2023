@@ -13,11 +13,17 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Intake;
 
-public class MoveIntakeA extends CommandBase {
+public class MoveIntake extends CommandBase {
   Intake intake;
+  double Position_LOW;
+  double Position_HIGH;
   //Creates a new IntakeBall.
-  public MoveIntakeA(Intake i) {
+  public MoveIntake(Intake i, 
+                    double tPosition_LOW,
+                    double tPosition_HIGH) {
     intake = i;
+    Position_LOW = tPosition_LOW;
+    Position_HIGH = tPosition_HIGH;
     addRequirements(intake);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -30,7 +36,8 @@ public class MoveIntakeA extends CommandBase {
   @Override
   public void execute() {
     //intake.intakeBall(RobotContainer.driverJoystick, Constants.INTAKE_SPEED);
-    Intake.m_pid_low.setReference(Constants.Intake.Position_A_LOW, CANSparkMax.ControlType.kPosition);
+    Intake.m_pid_low.setReference(Position_LOW, CANSparkMax.ControlType.kPosition);
+    Intake.m_pid_high.setReference(Position_HIGH, CANSparkMax.ControlType.kPosition);
   }
 
   // Called once the command ends or is interrupted.
