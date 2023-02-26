@@ -4,8 +4,14 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveSubsystem;
@@ -21,6 +27,12 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
+  private static final int deviceID = 1;
+  private CANSparkMax m_motor;
+  private SparkMaxPIDController m_pidController;
+  private RelativeEncoder m_encoder;
+  public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -31,6 +43,52 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     Shuffleboard.getTab("SmartDashboard").add("RobotDirection", DriveSubsystem.m_gyro);
+ 
+        // initialize motor
+        m_motor = new CANSparkMax(deviceID, MotorType.kBrushless);
+
+        /**
+         * The restoreFactoryDefaults method can be used to reset the configuration parameters
+         * in the SPARK MAX to their factory default state. If no argument is passed, these
+         * parameters will not persist between power cycles
+         */
+        m_motor.restoreFactoryDefaults();
+    
+        /**
+         * In order to use PID functionality for a controller, a SparkMaxPIDController object
+         * is constructed by calling the getPIDController() method on an existing
+         * CANSparkMax object
+         */
+        m_pidController = m_motor.getPIDController();
+    
+        // Encoder object created to display position values
+        m_encoder = m_motor.getEncoder();
+    
+        // PID coefficients
+        kP = 0.1; 
+        kI = 1e-4;
+        kD = 1; 
+        kIz = 0; 
+        kFF = 0; 
+        kMaxOutput = 1; 
+        kMinOutput = -1;
+    
+        // set PID coefficients
+        m_pidController.setP(kP);
+        m_pidController.setI(kI);
+        m_pidController.setD(kD);
+        m_pidController.setIZone(kIz);
+        m_pidController.setFF(kFF);
+        m_pidController.setOutputRange(kMinOutput, kMaxOutput);
+
+    SmartDashboard.putNumber("P Gain", kP);
+    SmartDashboard.putNumber("I Gain", kI);
+    SmartDashboard.putNumber("D Gain", kD);
+    SmartDashboard.putNumber("I Zone", kIz);
+    SmartDashboard.putNumber("Feed Forward", kFF);
+    SmartDashboard.putNumber("Max Output", kMaxOutput);
+    SmartDashboard.putNumber("Min Output", kMinOutput);
+    SmartDashboard.putNumber("Set Rotations", 0);
   }
 
 

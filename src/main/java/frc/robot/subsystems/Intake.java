@@ -11,11 +11,14 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.SparkMaxRelativeEncoder;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
@@ -25,6 +28,7 @@ public class Intake extends SubsystemBase {
   private SparkMaxPIDController m_pid_high;
 
   private RelativeEncoder m_encoder_low, m_encoder_high;
+  private double target_position;
 
   /** Creates a new Intake. */
   public Intake() {
@@ -35,6 +39,9 @@ public class Intake extends SubsystemBase {
 //    m_encoder_high = m_motor_high.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,4096);
     m_encoder_low = m_motor_low.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor,42);
     m_encoder_high = m_motor_high.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor,42);
+
+    m_encoder_low.setPosition(0);
+    m_encoder_high.setPosition(0);
 
     m_motor_low.restoreFactoryDefaults();
     m_motor_high.restoreFactoryDefaults();
@@ -52,6 +59,8 @@ public class Intake extends SubsystemBase {
     m_pid_high.setP(Constants.Intake.kPhigh);
     m_pid_high.setI(Constants.Intake.kIhigh);
     m_pid_high.setD(Constants.Intake.kDhigh);
+
+    target_position = 0;
   }
 
   @Override
@@ -65,7 +74,16 @@ public class Intake extends SubsystemBase {
 
   public void intakeBall(XboxController controller, double speed)
   {
-    m_motor_low.set(controller.getRightTriggerAxis()*speed);
+    //m_motor_low.set(controller.getRightTriggerAxis()*speed);
+    if (controller.getRightBumperReleased())
+    {
+      target_position += 30;
+    }
+      
+    m_pid_low.setReference(target_position, CANSparkMax.ControlType.kPosition);
+    
+    SmartDashboard.putNumber("m_motor_low Position", m_encoder_low.getPosition());
+    SmartDashboard.putNumber("m_motor_low Target Position", target_position);
   }
 
   public void stop()

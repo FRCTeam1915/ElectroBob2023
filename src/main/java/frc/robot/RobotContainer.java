@@ -119,9 +119,11 @@ public class RobotContainer {
     chooser.setDefaultOption("Autonomous One", autonomousOne);
     SmartDashboard.putData("Autonomous", chooser);
 */
-    //UsbCamera camera = CameraServer.startAutomaticCapture();
-    //camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
-
+    UsbCamera camera = CameraServer.startAutomaticCapture();
+    camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
+    camera = CameraServer.startAutomaticCapture();
+    camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
+    
     // Configure the trigger bindings
     configureBindings();
   }
