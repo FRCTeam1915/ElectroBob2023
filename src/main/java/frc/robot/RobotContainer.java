@@ -12,7 +12,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.commands.IntakeBall;
-import frc.robot.commands.MoveIntakeA;
+import frc.robot.commands.MoveIntake;
 //import frc.robot.commands.IntakeBall;
 //import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.DriveSubsystem;
@@ -136,10 +136,16 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    Trigger xButton = m_driverController.x();
-    //xButton.onTrue(new ShootBall(shooter).repeatedly());
-    xButton.onTrue(new MoveIntakeA(intake));
+    Trigger xButton = m_driverController.y();
+    xButton.onTrue(new MoveIntake(intake,
+                                  Constants.Intake.A.Position_LOW,
+                                  Constants.Intake.A.Position_HIGH));
 
+    Trigger yButton = m_driverController.x();
+    xButton.onTrue(new MoveIntake(intake,
+                                  Constants.Intake.B.Position_LOW,
+                                  Constants.Intake.B.Position_HIGH));
+                              
     //Trigger rightBumper = m_driverController.rightBumper();
     //rightBumper.onTrue(new ShootBall(shooter).repeatedly());
 
