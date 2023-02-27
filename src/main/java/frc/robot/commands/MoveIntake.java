@@ -17,13 +17,36 @@ public class MoveIntake extends CommandBase {
   Intake intake;
   double Position_LOW;
   double Position_HIGH;
+  double kPlow;
+  double kPhigh;
+  double kIlow;
+  double kIhigh;
+  double kDlow;
+  double kDhigh;
+
+
   //Creates a new IntakeBall.
   public MoveIntake(Intake i, 
                     double tPosition_LOW,
-                    double tPosition_HIGH) {
+                    double tPosition_HIGH,
+                    double tkPlow,
+                    double tkPhigh,
+                    double tkIlow,
+                    double tkIhigh,
+                    double tkDlow,
+                    double tkDhigh) {
     intake = i;
     Position_LOW = tPosition_LOW;
     Position_HIGH = tPosition_HIGH;
+    kPlow = tkPlow;
+    kPhigh = tkPhigh;
+    kIlow = tkIlow;
+    kIhigh = tkIhigh;
+    kDlow = tkDlow;
+    kDhigh = tkDhigh;
+
+
+
     addRequirements(intake);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -36,6 +59,13 @@ public class MoveIntake extends CommandBase {
   @Override
   public void execute() {
     //intake.intakeBall(RobotContainer.driverJoystick, Constants.INTAKE_SPEED);
+    Intake.m_pid_low.setP(kPlow);
+    Intake.m_pid_low.setI(kIlow);
+    Intake.m_pid_low.setD(kDlow);
+
+    Intake.m_pid_high.setP(kPhigh);
+    Intake.m_pid_high.setI(kIhigh);
+    Intake.m_pid_high.setD(kDhigh);
     Intake.m_pid_low.setReference(Position_LOW, CANSparkMax.ControlType.kPosition);
     Intake.m_pid_high.setReference(Position_HIGH, CANSparkMax.ControlType.kPosition);
   }

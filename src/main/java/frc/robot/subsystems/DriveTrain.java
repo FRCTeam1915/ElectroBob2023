@@ -26,10 +26,10 @@ public class DriveTrain extends SubsystemBase {
   CANSparkMax leftBack;
   CANSparkMax rightBack;
 */
-  WPI_TalonSRX rightFront;
-  WPI_TalonSRX rightBack;
-  WPI_TalonSRX leftFront;
-  WPI_TalonSRX leftBack;
+  //WPI_TalonSRX rightFront;
+  //WPI_TalonSRX rightBack;
+  //WPI_TalonSRX leftFront;
+  
 
   MotorControllerGroup leftMotors;
   MotorControllerGroup rightMotors;
@@ -60,15 +60,7 @@ public class DriveTrain extends SubsystemBase {
     rightBack.setInverted(false);
     */
     
-    leftMotors = new MotorControllerGroup(leftFront,leftBack);
-    rightMotors = new MotorControllerGroup(rightFront,rightBack);
-    
 
-    leftFront = new WPI_TalonSRX(5);    
-    rightFront = new WPI_TalonSRX(8);    
-    
-    leftMotors = new MotorControllerGroup(leftFront);
-    rightMotors = new MotorControllerGroup(rightFront);
 
 
     drive = new DifferentialDrive(leftMotors,rightMotors);

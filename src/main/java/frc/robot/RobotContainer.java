@@ -13,17 +13,21 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.MoveIntake;
+import frc.robot.commands.tayneDrop;
+import frc.robot.commands.tayneTake;
 //import frc.robot.commands.IntakeBall;
 //import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.TaynesIntake;
 //import frc.robot.subsystems.Shooter;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveToDistance;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -45,6 +49,9 @@ public class RobotContainer {
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
+  private final CommandXboxController m_IntakeController =
+      new CommandXboxController(OperatorConstants.kIntakeControllerPort);
+
   private final DriveSubsystem driveTrain = new DriveSubsystem();
  // XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
 
@@ -60,6 +67,7 @@ public class RobotContainer {
   //private final AutoShoot autoShoot;
 
   private final Intake intake;
+  private final TaynesIntake tayke;
   private final IntakeBall intakeBall;
 
   //private final AutonomousOne autonomousOne;
@@ -106,7 +114,7 @@ public class RobotContainer {
     */
 
     intake = new Intake();
-
+    tayke = new TaynesIntake();
     intakeBall = new IntakeBall(intake);
     intakeBall.addRequirements(intake);
     intake.setDefaultCommand(intakeBall);
@@ -119,11 +127,12 @@ public class RobotContainer {
     chooser.setDefaultOption("Autonomous One", autonomousOne);
     SmartDashboard.putData("Autonomous", chooser);
 */
+/**
     UsbCamera camera = CameraServer.startAutomaticCapture();
     camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
     camera = CameraServer.startAutomaticCapture();
     camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
-    
+*/
     // Configure the trigger bindings
     configureBindings();
   }
@@ -138,18 +147,47 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    Trigger xButton = m_driverController.y();
+    Trigger xButton = m_IntakeController.x();
     xButton.onTrue(new MoveIntake(intake,
                                   Constants.Intake.A.Position_LOW,
-                                  Constants.Intake.A.Position_HIGH));
+                                  Constants.Intake.A.Position_HIGH,
+                                  Constants.Intake.A.kPlow,
+                                  Constants.Intake.A.kPhigh,
+                                  Constants.Intake.A.kIlow,
+                                  Constants.Intake.A.kIhigh,
+                                  Constants.Intake.A.kDlow,
+                                  Constants.Intake.A.kDhigh));
 
-    Trigger yButton = m_driverController.x();
-    xButton.onTrue(new MoveIntake(intake,
+    Trigger yButton = m_IntakeController.y();
+    yButton.onTrue(new MoveIntake(intake,
                                   Constants.Intake.B.Position_LOW,
-                                  Constants.Intake.B.Position_HIGH));
+                                  Constants.Intake.B.Position_HIGH,
+                                  Constants.Intake.B.kPlow,
+                                  Constants.Intake.B.kPhigh,
+                                  Constants.Intake.B.kIlow,
+                                  Constants.Intake.B.kIhigh,
+                                  Constants.Intake.B.kDlow,
+                                  Constants.Intake.B.kDhigh));
                               
+    Trigger bButton = m_IntakeController.b();
+    bButton.onTrue(new MoveIntake(intake, 
+                                  Constants.Intake.C.Position_LOW,
+                                  Constants.Intake.C.Position_High,
+                                  Constants.Intake.C.kPlow,
+                                  Constants.Intake.C.kPhigh,
+                                  Constants.Intake.C.kIlow,
+                                  Constants.Intake.C.kIhigh,
+                                  Constants.Intake.C.kDlow,
+                                  Constants.Intake.C.kDhigh));
+
     //Trigger rightBumper = m_driverController.rightBumper();
     //rightBumper.onTrue(new ShootBall(shooter).repeatedly());
+
+    Trigger leftBumper = m_IntakeController.leftBumper();
+    leftBumper.whileTrue(new tayneTake(tayke, true).repeatedly());
+
+    Trigger rightBumper = m_IntakeController.rightBumper();
+    rightBumper.whileTrue(new tayneTake(tayke, false).repeatedly());
 
     Trigger aButton = m_driverController.a();
     aButton.onTrue(new DriveToDistance(driveTrain).repeatedly());
@@ -162,9 +200,10 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public Command  getAutonomousCommand() {
     // An example command will be run in autonomous
     //return chooser.getSelected();
+    /** 
     return new RunCommand(
             () -> driveTrain.drive(
                 0,
@@ -172,5 +211,24 @@ public class RobotContainer {
                 0.2,
                 true),
             driveTrain);
+    */
+    //move to position A
+    new MoveIntake(intake,
+      Constants.Intake.A.Position_LOW,
+      Constants.Intake.A.Position_HIGH,
+      Constants.Intake.A.kPlow,
+      Constants.Intake.A.kPhigh,
+      Constants.Intake.A.kIlow,
+      Constants.Intake.A.kIhigh,
+      Constants.Intake.A.kDlow,
+      Constants.Intake.A.kDhigh);
+
+    //Place game piece
+    new tayneDrop(tayke, false);
+  
+    //Leave community
+   // new DriveForwardTimed(DriveSubsystem);
+
+   return true;
   }
 }

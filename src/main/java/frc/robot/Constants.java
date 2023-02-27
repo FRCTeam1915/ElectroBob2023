@@ -64,7 +64,7 @@ public final class Constants {
     // The MAXSwerve module can be configured with one of three pinion gears: 12T, 13T, or 14T.
     // This changes the drive speed of the module (a pinion gear with more teeth will result in a
     // robot that drives faster).
-    public static final int kDrivingMotorPinionTeeth = 14;
+    public static final int kDrivingMotorPinionTeeth = 13;
 
     // Invert the turning encoder, since the output shaft rotates in the opposite direction of
     // the steering motor in the MAXSwerve Module.
@@ -103,15 +103,15 @@ public final class Constants {
     public static final double kTurningMinOutput = -1;
     public static final double kTurningMaxOutput = 1;
 
-    public static final IdleMode kDrivingMotorIdleMode = IdleMode.kCoast;
-    public static final IdleMode kTurningMotorIdleMode = IdleMode.kCoast;
+    public static final IdleMode kDrivingMotorIdleMode = IdleMode.kBrake;
+    public static final IdleMode kTurningMotorIdleMode = IdleMode.kBrake;
 
     public static final int kDrivingMotorCurrentLimit = 50; // amps
     public static final int kTurningMotorCurrentLimit = 20; // amps
   }
 
   public static final class OIConstants {
-    public static final int kDriverControllerPort = 0;
+    //public static final int kDriverControllerPort = 0;
     public static final double kDriveDeadband = 0.05;
   }
 
@@ -135,6 +135,7 @@ public final class Constants {
   }
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int kIntakeControllerPort = 1;
   }
   //PWM's for wiring team
 //public static final int LEFT_FRONT = 5;
@@ -165,23 +166,40 @@ public static final double SETPOINT_FORWARD = 1.5;
 
 public static final class Intake {
   public static final class A {
-    public static double Position_LOW = 0;
+    public static double Position_LOW = 0; //subject to change
     public static double Position_HIGH = 10;
+    public static final double kPlow = 0.02;
+    public static final double kIlow = 0;
+    public static final double kDlow = 0;
+    public static final double kPhigh = .02;
+    public static final double kIhigh = 0;
+    public static final double kDhigh = 0;
   }
   public static final class B {
     public static double Position_LOW = 20;
     public static double Position_HIGH = 30;
+    public static final double kPlow = .02;
+    public static final double kIlow = 0;
+    public static final double kDlow = 0;
+    public static final double kPhigh = .02;
+    public static final double kIhigh = 0;
+    public static final double kDhigh = 0;
   }
-  public static final double kPlow = 1;
-  public static final double kIlow = 0;
-  public static final double kDlow = 0;
-  public static final double kPhigh = 1;
-  public static final double kIhigh = 0;
-  public static final double kDhigh = 0;
+  public static final class C {
+    public static double Position_LOW = 40;
+    public static double Position_High = 50;
+    public static final double kPlow = .02;
+    public static final double kIlow = 0;
+    public static final double kDlow = 0;
+    public static final double kPhigh = .02;
+    public static final double kIhigh = 0;
+    public static final double kDhigh = 0;
+  }
+
   public static final int CAN_high = 21;
   public static final int CAN_low = 22;
 }
 
-
+public static final int taynesIntake = 7;
 
 }

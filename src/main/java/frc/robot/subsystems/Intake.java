@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
@@ -40,6 +41,11 @@ public class Intake extends SubsystemBase {
     m_encoder_low = m_motor_low.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor,42);
     m_encoder_high = m_motor_high.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor,42);
 
+    m_encoder_low.getPosition();
+    SmartDashboard.putNumber("ProcessVariable", m_encoder_low.getPosition());
+    //private CANEncoder encoder = new CANEncoder(motor);
+    //encoder.getPosition();
+
     m_encoder_low.setPosition(0);
     m_encoder_high.setPosition(0);
 
@@ -52,6 +58,7 @@ public class Intake extends SubsystemBase {
     m_pid_low.setFeedbackDevice(m_encoder_low);
     m_pid_high.setFeedbackDevice(m_encoder_high);
 
+/** 
     m_pid_low.setP(Constants.Intake.kPlow);
     m_pid_low.setI(Constants.Intake.kIlow);
     m_pid_low.setD(Constants.Intake.kDlow);
@@ -59,7 +66,7 @@ public class Intake extends SubsystemBase {
     m_pid_high.setP(Constants.Intake.kPhigh);
     m_pid_high.setI(Constants.Intake.kIhigh);
     m_pid_high.setD(Constants.Intake.kDhigh);
-
+*/
     target_position = 0;
   }
 
