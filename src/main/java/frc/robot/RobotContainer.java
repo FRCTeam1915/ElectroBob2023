@@ -200,10 +200,11 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
+  
   public Command  getAutonomousCommand() {
     // An example command will be run in autonomous
     //return chooser.getSelected();
-    /** 
+     
     return new RunCommand(
             () -> driveTrain.drive(
                 0,
@@ -211,7 +212,8 @@ public class RobotContainer {
                 0.2,
                 true),
             driveTrain);
-    */
+    
+    /*
     //move to position A
     new MoveIntake(intake,
       Constants.Intake.A.Position_LOW,
@@ -229,6 +231,6 @@ public class RobotContainer {
     //Leave community
    // new DriveForwardTimed(DriveSubsystem);
 
-   return true;
+  */ 
   }
 }

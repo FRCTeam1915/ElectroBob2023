@@ -29,7 +29,7 @@ public class Intake extends SubsystemBase {
   public static SparkMaxPIDController m_pid_high;
 
   private RelativeEncoder m_encoder_low, m_encoder_high;
-  private double target_position;
+  private double target_position_low, target_position_high;
 
   /** Creates a new Intake. */
   public Intake() {
@@ -67,12 +67,16 @@ public class Intake extends SubsystemBase {
     m_pid_high.setI(Constants.Intake.kIhigh);
     m_pid_high.setD(Constants.Intake.kDhigh);
 */
-    target_position = 0;
+    //target_position_low = 0;
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("m_motor_low Position", m_encoder_low.getPosition());
+    //SmartDashboard.putNumber("m_motor_low Target Position", target_position_low);
+    SmartDashboard.putNumber("m_motor_high Position", m_encoder_high.getPosition());
+    //SmartDashboard.putNumber("m_motor_high Target Position", target_position_high);
   }
 
 //  public void set_position_A() {
@@ -82,15 +86,17 @@ public class Intake extends SubsystemBase {
   public void intakeBall(XboxController controller, double speed)
   {
     //m_motor_low.set(controller.getRightTriggerAxis()*speed);
-    if (controller.getRightBumperReleased())
-    {
-      target_position += 30;
-    }
+    //if (controller.getRightBumperReleased())
+    //{
+    //  target_position += 30;
+    //}
       
-    m_pid_low.setReference(target_position, CANSparkMax.ControlType.kPosition);
+    //m_pid_low.setReference(target_position_low, CANSparkMax.ControlType.kPosition);
     
-    SmartDashboard.putNumber("m_motor_low Position", m_encoder_low.getPosition());
-    SmartDashboard.putNumber("m_motor_low Target Position", target_position);
+    //SmartDashboard.putNumber("m_motor_low Position", m_encoder_low.getPosition());
+    //SmartDashboard.putNumber("m_motor_low Target Position", target_position_low);
+    //SmartDashboard.putNumber("m_motor_high Position", m_encoder_high.getPosition());
+    //SmartDashboard.putNumber("m_motor_high Target Position", target_position_high);
   }
 
   public void stop()

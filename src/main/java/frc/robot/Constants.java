@@ -166,7 +166,7 @@ public static final double SETPOINT_FORWARD = 1.5;
 
 public static final class Intake {
   public static final class A {
-    public static double Position_LOW = 0; //subject to change
+    public static double Position_LOW = -5; //subject to change
     public static double Position_HIGH = 10;
     public static final double kPlow = 0.02;
     public static final double kIlow = 0;
@@ -176,7 +176,7 @@ public static final class Intake {
     public static final double kDhigh = 0;
   }
   public static final class B {
-    public static double Position_LOW = 20;
+    public static double Position_LOW = -8;
     public static double Position_HIGH = 30;
     public static final double kPlow = .02;
     public static final double kIlow = 0;
@@ -186,7 +186,7 @@ public static final class Intake {
     public static final double kDhigh = 0;
   }
   public static final class C {
-    public static double Position_LOW = 40;
+    public static double Position_LOW = -2;
     public static double Position_High = 50;
     public static final double kPlow = .02;
     public static final double kIlow = 0;
