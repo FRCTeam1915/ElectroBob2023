@@ -149,6 +149,7 @@ public static final int INTAKE = 7;
 public static final int RANGE_FINDER = 0;
 
 
+
 // Axis
 public static final int XBOX_LEFT_Y_AXIS = 1;
 public static final int XBOX_LEFT_X_AXIS = 0;
@@ -165,10 +166,11 @@ public static final double AUTO_SHOOT_TIME = 2.0;
 public static final double SETPOINT_FORWARD = 1.5;
 
 public static final class Intake {
+  public static double fineGrainDistance = 10;
   public static final class A {
-    public static double Position_LOW = -5; //subject to change
-    public static double Position_HIGH = 10;
-    public static final double kPlow = 0.02;
+    public static double Position_LOW = -102; //subject to change
+    public static double Position_HIGH = 87;
+    public static final double kPlow = 0.01;
     public static final double kIlow = 0;
     public static final double kDlow = 0;
     public static final double kPhigh = .02;
@@ -176,9 +178,9 @@ public static final class Intake {
     public static final double kDhigh = 0;
   }
   public static final class B {
-    public static double Position_LOW = -8;
-    public static double Position_HIGH = 30;
-    public static final double kPlow = .02;
+    public static double Position_LOW = -127;
+    public static double Position_HIGH = 115;
+    public static final double kPlow = 0.01;
     public static final double kIlow = 0;
     public static final double kDlow = 0;
     public static final double kPhigh = .02;
@@ -186,9 +188,9 @@ public static final class Intake {
     public static final double kDhigh = 0;
   }
   public static final class C {
-    public static double Position_LOW = -2;
-    public static double Position_High = 50;
-    public static final double kPlow = .02;
+    public static double Position_LOW = -70;
+    public static double Position_High = 47;
+    public static final double kPlow = 0.01;
     public static final double kIlow = 0;
     public static final double kDlow = 0;
     public static final double kPhigh = .02;

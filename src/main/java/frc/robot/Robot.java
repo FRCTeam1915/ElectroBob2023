@@ -27,7 +27,7 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  private static final int deviceID = 1;
+  //private static final int deviceID = 1;
   private CANSparkMax m_motor;
   private SparkMaxPIDController m_pidController;
   private RelativeEncoder m_encoder;
@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
     Shuffleboard.getTab("SmartDashboard").add("RobotDirection", DriveSubsystem.m_gyro);
  
         // initialize motor
-        m_motor = new CANSparkMax(deviceID, MotorType.kBrushless);
+        //m_motor = new CANSparkMax(deviceID, MotorType.kBrushless);
 
         /**
          * The restoreFactoryDefaults method can be used to reset the configuration parameters

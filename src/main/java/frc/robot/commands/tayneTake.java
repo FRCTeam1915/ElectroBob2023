@@ -14,7 +14,7 @@ import frc.robot.subsystems.TaynesIntake;
 public class tayneTake extends CommandBase {
   boolean inn;
   TaynesIntake tayke;
-  /** Creates a new tayneTake. */
+  // Creates a new tayneTake.
   public tayneTake(TaynesIntake ttayke, boolean tinn) {
     inn = tinn;
     tayke = ttayke;

@@ -28,7 +28,8 @@ public class Intake extends SubsystemBase {
   public static SparkMaxPIDController m_pid_low;
   public static SparkMaxPIDController m_pid_high;
 
-  private RelativeEncoder m_encoder_low, m_encoder_high;
+  public static RelativeEncoder m_encoder_low;
+  public static RelativeEncoder m_encoder_high;
   private double target_position_low, target_position_high;
 
   /** Creates a new Intake. */

@@ -13,6 +13,7 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.MoveIntake;
+import frc.robot.commands.fineGrain;
 import frc.robot.commands.tayneDrop;
 import frc.robot.commands.tayneTake;
 //import frc.robot.commands.IntakeBall;
@@ -184,10 +185,22 @@ public class RobotContainer {
     //rightBumper.onTrue(new ShootBall(shooter).repeatedly());
 
     Trigger leftBumper = m_IntakeController.leftBumper();
-    leftBumper.whileTrue(new tayneTake(tayke, true).repeatedly());
+    leftBumper.whileTrue(new fineGrain(intake, 1, 0));
 
     Trigger rightBumper = m_IntakeController.rightBumper();
-    rightBumper.whileTrue(new tayneTake(tayke, false).repeatedly());
+    rightBumper.whileTrue(new fineGrain(intake, -1, 0));
+
+    Trigger povUp = m_IntakeController.povUp();
+    povUp.whileTrue(new fineGrain(intake, 0, 1));
+
+    Trigger povDown = m_IntakeController.povDown();
+    povDown.whileTrue(new fineGrain(intake, 0, -1));
+
+    Trigger leftTrigger = m_IntakeController.leftTrigger();
+    leftTrigger.whileTrue(new tayneTake(tayke, true).repeatedly());
+
+    Trigger rightTigger = m_IntakeController.rightTrigger();
+    rightTigger.whileTrue(new tayneTake(tayke, false).repeatedly());
 
     Trigger aButton = m_driverController.a();
     aButton.onTrue(new DriveToDistance(driveTrain).repeatedly());

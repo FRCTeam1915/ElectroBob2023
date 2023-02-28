@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class TaynesIntake extends SubsystemBase {
-  public static WPI_TalonFX taynesIntake;
+  public static WPI_TalonSRX taynesIntake;
   /** Creates a new TaynesIntake. */
   public TaynesIntake() {
     WPI_TalonSRX taynesIntake = new WPI_TalonSRX(Constants.taynesIntake);
@@ -23,5 +23,8 @@ public class TaynesIntake extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
 
+  }
+  public void stop() {
+    taynesIntake.stopMotor();
   }
 }
