@@ -29,6 +29,7 @@ public fineGrain(Intake i, double tuppHigh, double tuppLow){
   /** Creates a new fineGrain. */
 
     // Use addRequirements() here to declare subsystem dependencies.
+  addRequirements(intake);  
   }
 
   // Called when the command is initially scheduled.
