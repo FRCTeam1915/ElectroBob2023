@@ -38,13 +38,14 @@ public class tayneDrop extends CommandBase {
   @Override
   public void execute() {
     while(timer.get() < 2) {
-    new tayneTake(tayke, false);
-      if(inn = true) {
-      TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0.1);
-}     else{
-      TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, -0.1);
-}      
-}
+    //new tayneTakeIn(tayke, false);
+    //  if(inn = true) {
+    //    TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0.1);
+    //  } else {
+        TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, -0.5);
+    //  }
+    //}
+    }
   }
 
   // Called once the command ends or is interrupted.
