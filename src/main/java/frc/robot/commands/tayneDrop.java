@@ -29,27 +29,31 @@ public class tayneDrop extends CommandBase {
   @Override
   public void initialize() {
     
-    timer.reset();
-    timer.start();
+    //timer.reset();
+    //timer.start();
 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    while(timer.get() < 2) {
-    new tayneTake(tayke, false);
-      if(inn = true) {
-      TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0.1);
-}     else{
-      TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, -0.1);
-}      
-}
+    //while(timer.get() < 2) {
+    //new tayneTakeIn(tayke, false);
+    //  if(inn = true) {
+    //    TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0.1);
+    //  } else {
+        TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, -0.5);
+    //  }
+    //}
+    //}
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0);
+
+  }
 
   // Returns true when the command should end.
   @Override

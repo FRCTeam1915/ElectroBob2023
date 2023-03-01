@@ -16,6 +16,8 @@ import frc.robot.commands.MoveIntake;
 import frc.robot.commands.fineGrain;
 import frc.robot.commands.tayneDrop;
 import frc.robot.commands.tayneTake;
+//import frc.robot.commands.tayneTakeIn;
+//import frc.robot.commands.tayneTakeOut;
 //import frc.robot.commands.IntakeBall;
 //import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.DriveSubsystem;
@@ -200,7 +202,7 @@ public class RobotContainer {
     bbutton.whileTrue(new tayneTake(tayke, true).repeatedly());
     
     Trigger ybutton = m_driverController.y();
-    ybutton.whileTrue(new tayneTake(tayke, false).repeatedly());
+    ybutton.whileTrue(new tayneDrop(tayke, true).repeatedly());
     
     Trigger aButton = m_driverController.a();
     aButton.onTrue(new DriveToDistance(driveTrain).repeatedly());

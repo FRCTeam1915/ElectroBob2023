@@ -34,13 +34,13 @@ public class tayneTake extends CommandBase {
   @Override
   public void execute() {
     SmartDashboard.putBoolean("Intake t/f", inn);
-    if(inn = true) {
+    //if(inn = true) {
       TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0.5);
       SmartDashboard.putNumber("t/f", 2);
-}   else{
-      TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 1);
-      SmartDashboard.putNumber("t/f", 1);
-}      
+    //} else {
+    //  TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 1);
+    //  SmartDashboard.putNumber("t/f", 1);
+    //}      
   }
 
   // Called once the command ends or is interrupted.
