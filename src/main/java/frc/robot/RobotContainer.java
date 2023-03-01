@@ -196,12 +196,12 @@ public class RobotContainer {
     Trigger povDown = m_IntakeController.povDown();
     povDown.whileTrue(new fineGrain(intake, 0, -1));
 
-    Trigger leftTrigger = m_IntakeController.leftTrigger();
-    leftTrigger.whileTrue(new tayneTake(tayke, true).repeatedly());
-
-    Trigger rightTigger = m_IntakeController.rightTrigger();
-    rightTigger.whileTrue(new tayneTake(tayke, false).repeatedly());
-
+    Trigger bbutton = m_driverController.b();
+    bbutton.whileTrue(new tayneTake(tayke, true).repeatedly());
+    
+    Trigger ybutton = m_driverController.y();
+    ybutton.whileTrue(new tayneTake(tayke, false).repeatedly());
+    
     Trigger aButton = m_driverController.a();
     aButton.onTrue(new DriveToDistance(driveTrain).repeatedly());
     // JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
