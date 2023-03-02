@@ -43,7 +43,7 @@ public class Intake extends SubsystemBase {
     m_encoder_high = m_motor_high.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor,42);
 
     m_encoder_low.getPosition();
-    SmartDashboard.putNumber("ProcessVariable", m_encoder_low.getPosition());
+    //SmartDashboard.putNumber("ProcessVariable", m_encoder_low.getPosition());
     //private CANEncoder encoder = new CANEncoder(motor);
     //encoder.getPosition();
 
