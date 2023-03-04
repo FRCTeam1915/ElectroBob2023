@@ -33,10 +33,10 @@ public class tayneTake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putBoolean("Intake t/f", inn);
+   
     //if(inn = true) {
       TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0.5);
-      SmartDashboard.putNumber("t/f", 2);
+     
     //} else {
     //  TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 1);
     //  SmartDashboard.putNumber("t/f", 1);

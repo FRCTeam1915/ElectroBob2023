@@ -15,7 +15,7 @@ public class xForm extends CommandBase {
   DriveSubsystem driveTrain;
 
   /** Creates a new xForm.*/
-  public void xForm(DriveSubsystem dt) {
+  public xForm(DriveSubsystem dt) {
     driveTrain = dt;
     /*
     driveTrain.m

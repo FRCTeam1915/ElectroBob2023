@@ -6,6 +6,8 @@ package frc.robot;
 
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.AutonomousOne;
+import frc.robot.commands.AutonomousTwo;
 //import frc.robot.commands.AutoShoot;
 //import frc.robot.commands.AutonomousOne;
 //import frc.robot.commands.AutonomousTwo;
@@ -16,6 +18,7 @@ import frc.robot.commands.MoveIntake;
 import frc.robot.commands.fineGrain;
 import frc.robot.commands.tayneDrop;
 import frc.robot.commands.tayneTake;
+import frc.robot.commands.xForm;
 //import frc.robot.commands.tayneTakeIn;
 //import frc.robot.commands.tayneTakeOut;
 //import frc.robot.commands.IntakeBall;
@@ -36,6 +39,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -150,6 +154,7 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+    /* 
     Trigger xButton = m_IntakeController.x();
     xButton.onTrue(new MoveIntake(intake,
                                   Constants.Intake.A.Position_LOW,
@@ -182,20 +187,20 @@ public class RobotContainer {
                                   Constants.Intake.C.kIhigh,
                                   Constants.Intake.C.kDlow,
                                   Constants.Intake.C.kDhigh));
-
+*/
     //Trigger rightBumper = m_driverController.rightBumper();
     //rightBumper.onTrue(new ShootBall(shooter).repeatedly());
 
-    Trigger leftBumper = m_IntakeController.leftBumper();
+    Trigger leftBumper = m_IntakeController.leftBumper();  //leftBumper
     leftBumper.whileTrue(new fineGrain(intake, 1, 0));
 
-    Trigger rightBumper = m_IntakeController.rightBumper();
+    Trigger rightBumper = m_IntakeController.rightBumper(); //rightBumper button
     rightBumper.whileTrue(new fineGrain(intake, -1, 0));
 
-    Trigger povUp = m_IntakeController.povUp();
+    Trigger povUp = m_IntakeController.povUp(); //changed button povUp
     povUp.whileTrue(new fineGrain(intake, 0, 1));
 
-    Trigger povDown = m_IntakeController.povDown();
+    Trigger povDown = m_IntakeController.povDown(); //povDown
     povDown.whileTrue(new fineGrain(intake, 0, -1));
 
     Trigger bbutton = m_driverController.b();
@@ -206,6 +211,10 @@ public class RobotContainer {
     
     Trigger aButton = m_driverController.a();
     aButton.onTrue(new DriveToDistance(driveTrain).repeatedly());
+
+    Trigger xbutton = m_driverController.x();
+    xbutton.whileTrue(new xForm(driveTrain));
+
     // JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
     // aButton.whenPressed(new DriveToDistance(driveTrain));
   }
@@ -219,15 +228,20 @@ public class RobotContainer {
   public Command  getAutonomousCommand() {
     // An example command will be run in autonomous
     //return chooser.getSelected();
-     
+
+    return new AutonomousOne(driveTrain, null);
+
+    /*
     return new RunCommand(
             () -> driveTrain.drive(
+                5,
                 0,
                 0,
-                0.2,
                 true),
-            driveTrain);
-    
+            driveTrain)
+            .andThen(new WaitCommand(1))
+            .andThen(() -> driveTrain.drive(0,0,0,true));
+    */
     /*
     //move to position A
     new MoveIntake(intake,

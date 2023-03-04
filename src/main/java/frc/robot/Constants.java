@@ -155,7 +155,7 @@ public static final int XBOX_LEFT_Y_AXIS = 1;
 public static final int XBOX_LEFT_X_AXIS = 0;
 public static final int RIGHT_TRIGGER = 3;
 public static final double DRIVETRAINSPEED = 1;
-public static final double AUTONOMOUS_SPEED = 0.4;
+public static final double AUTONOMOUS_SPEED = 0.2;
 public static final double DRIVE_FORWARD_TIME = 5.0;
 public static final int JOYSTICK_NUMBER = 0;
 public static final double SHOOTER_SPEED = .5;
@@ -166,7 +166,7 @@ public static final double AUTO_SHOOT_TIME = 2.0;
 public static final double SETPOINT_FORWARD = 1.5;
 
 public static final class Intake {
-  public static double fineGrainDistance = 10;
+  public static double fineGrainDistance = 5;
   public static final class A {
     public static double Position_LOW = -102; //subject to change
     public static double Position_HIGH = 87;

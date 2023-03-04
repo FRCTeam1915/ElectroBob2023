@@ -46,18 +46,22 @@ public fineGrain(Intake i, double tuppHigh, double tuppLow){
     //If uppLow is greater < 0, move up, elif > 0, move down, else stay still
     if(uppLow < 0) {
       Intake.m_pid_low.setReference(Position_LOW + Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
+      System.out.println("running lower arm up");
     }
     else if(uppLow > 0) {
       Intake.m_pid_low.setReference(Position_LOW - Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
+      System.out.println("running lower arm down");
     }
 
     Position_HIGH = Intake.m_encoder_high.getPosition();
     //If uppHigh is greater < 0, move up, elif > 0, move down, else stay still
     if(uppHigh < 0) {
       Intake.m_pid_high.setReference(Position_HIGH + Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
+      System.out.println("running upper arm up");
     }
     else if(uppHigh > 0) {
       Intake.m_pid_high.setReference(Position_HIGH - Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
+      System.out.println("running upper arm down");
     }
   }
 
