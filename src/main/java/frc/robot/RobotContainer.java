@@ -44,6 +44,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
+
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -52,6 +53,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  //private boolean m_reset = false;
+  
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -134,7 +137,7 @@ public class RobotContainer {
     chooser.setDefaultOption("Autonomous One", autonomousOne);
     SmartDashboard.putData("Autonomous", chooser);
 */
-/**
+/*
     UsbCamera camera = CameraServer.startAutomaticCapture();
     camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
     camera = CameraServer.startAutomaticCapture();
