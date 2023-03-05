@@ -23,7 +23,7 @@ public class gyro_reset extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Gyro Reset");
+    //ystem.out.println("Gyro Reset");
     driveTrain.reset_gyro();
   }
 

@@ -151,10 +151,11 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void reset_gyro() {
-  if (m_reset) {
+  //if (m_reset) {
+    System.out.println("Gyro Reset");
     m_gyro.reset();
     m_reset = SmartDashboard.putBoolean("Reset", false);
-  }
+  
   }
 
   /**
