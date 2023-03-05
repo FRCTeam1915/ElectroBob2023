@@ -13,6 +13,7 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import com.kauailabs.navx.frc.AHRS;
 import frc.robot.Constants.DriveConstants;
@@ -45,6 +46,7 @@ public class DriveSubsystem extends SubsystemBase {
   public final static
     ADIS16470_IMU m_gyro = new
     ADIS16470_IMU();
+  private boolean m_reset = false;
 
   //private final AHRS m_gyro = new AHRS(SPI.Port.kMXP); 
   
@@ -62,11 +64,16 @@ public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
     //Shuffleboard.getTab("SmartDashboard").add(m_gyro);
-
+    SmartDashboard.putBoolean("Reset", false);
   }
 
   @Override
   public void periodic() {
+    m_reset = SmartDashboard.getBoolean("Reset", false);
+    if (m_reset) {
+      m_gyro.reset();
+      m_reset = SmartDashboard.putBoolean("Reset", false);
+    }
     // Update the odometry in the periodic block
     m_odometry.update(
         Rotation2d.fromDegrees(m_gyro.getAngle()),
