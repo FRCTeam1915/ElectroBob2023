@@ -16,6 +16,7 @@ import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.MoveIntake;
 import frc.robot.commands.fineGrain;
+import frc.robot.commands.gyro_reset;
 import frc.robot.commands.tayneDrop;
 import frc.robot.commands.tayneTake;
 import frc.robot.commands.xForm;
@@ -218,6 +219,9 @@ public class RobotContainer {
 
     Trigger xbutton = m_driverController.x();
     xbutton.whileTrue(new xForm(driveTrain));
+
+    Trigger abutton = m_driverController.a();
+    abutton.onTrue(new gyro_reset());
 
     // JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
     // aButton.whenPressed(new DriveToDistance(driveTrain));

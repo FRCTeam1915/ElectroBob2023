@@ -166,7 +166,7 @@ public static final double AUTO_SHOOT_TIME = 2.0;
 public static final double SETPOINT_FORWARD = 1.5;
 
 public static final class Intake {
-  public static double fineGrainDistance = .8;
+  public static double fineGrainDistance = .3;
   public static final class A {
     public static double Position_LOW = -102; //subject to change
     public static double Position_HIGH = 87;

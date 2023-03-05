@@ -46,7 +46,7 @@ public class DriveSubsystem extends SubsystemBase {
   public final static
     ADIS16470_IMU m_gyro = new
     ADIS16470_IMU();
-  private boolean m_reset = false;
+  private static boolean m_reset = false;
 
   //private final AHRS m_gyro = new AHRS(SPI.Port.kMXP); 
   
@@ -150,6 +150,12 @@ public class DriveSubsystem extends SubsystemBase {
     m_rearRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
   }
 
+  public static void reset_gyro() {
+  if (m_reset) {
+    m_gyro.reset();
+    m_reset = SmartDashboard.putBoolean("Reset", false);
+  }
+  }
 
   /**
    * Sets the swerve ModuleStates.
