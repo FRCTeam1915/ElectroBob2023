@@ -8,8 +8,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class gyro_reset extends CommandBase {
+  DriveSubsystem driveTrain;
   /** Creates a new gyro_reset. */
-  public gyro_reset() {
+  public gyro_reset(DriveSubsystem dt) {
+    driveTrain = dt;
+    addRequirements(driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -20,7 +23,8 @@ public class gyro_reset extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    DriveSubsystem.reset_gyro();
+    System.out.println("Gyro Reset");
+    driveTrain.reset_gyro();
   }
 
   // Called once the command ends or is interrupted.

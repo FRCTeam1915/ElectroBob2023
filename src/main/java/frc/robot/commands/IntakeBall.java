@@ -29,6 +29,7 @@ public class IntakeBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
     intake.intakeBall(RobotContainer.driverJoystick, Constants.INTAKE_SPEED);
   }
 

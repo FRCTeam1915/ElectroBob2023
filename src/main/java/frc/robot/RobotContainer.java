@@ -221,7 +221,8 @@ public class RobotContainer {
     xbutton.whileTrue(new xForm(driveTrain));
 
     Trigger abutton = m_driverController.a();
-    abutton.onTrue(new gyro_reset());
+    abutton.onTrue(new gyro_reset(driveTrain));
+    
 
     // JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
     // aButton.whenPressed(new DriveToDistance(driveTrain));
