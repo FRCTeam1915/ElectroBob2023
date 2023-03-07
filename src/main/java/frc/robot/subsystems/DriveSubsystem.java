@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import com.kauailabs.navx.frc.AHRS;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.utils.SwerveUtils;
 
 public class DriveSubsystem extends SubsystemBase {
   // Create MAXSwerveModules
@@ -132,8 +133,11 @@ public class DriveSubsystem extends SubsystemBase {
    * @param fieldRelative Whether the provided x and y speeds are relative to the
    *                      field.
    */
-  public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
+  public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative, boolean rateLimit) {
     // Adjust input based on max speed
+    double xSpeedCommanded;
+    double ySpeedCommanded;
+
     xSpeed *= DriveConstants.kMaxSpeedMetersPerSecond;
     ySpeed *= DriveConstants.kMaxSpeedMetersPerSecond;
     rot *= DriveConstants.kMaxAngularSpeed;
@@ -189,7 +193,7 @@ public class DriveSubsystem extends SubsystemBase {
     double xSpeedDelivered = xSpeedCommanded * DriveConstants.kMaxSpeedMetersPerSecond;
     double ySpeedDelivered = ySpeedCommanded * DriveConstants.kMaxSpeedMetersPerSecond;
     double rotDelivered = m_currentRotation * DriveConstants.kMaxAngularSpeed;
-    
+
     var swerveModuleStates = DriveConstants.kDriveKinematics.toSwerveModuleStates(
         fieldRelative
             ? ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, rot, Rotation2d.fromDegrees(m_gyro.getAngle()))
