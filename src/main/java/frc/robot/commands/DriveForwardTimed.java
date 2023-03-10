@@ -29,7 +29,7 @@ public class DriveForwardTimed extends CommandBase {
     timer.start();
     while(timer.get() < Constants.DRIVE_FORWARD_TIME)
     {
-     driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true);
+     driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, finish);
     }
     finish = true;
   }
