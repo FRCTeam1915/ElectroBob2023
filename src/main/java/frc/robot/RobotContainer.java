@@ -85,7 +85,10 @@ public class RobotContainer {
   //private final AutonomousOne autonomousOne;
   //private final AutonomousTwo autonomousTwo;
 
-  SendableChooser<Command> chooser = new SendableChooser<>();
+  //SendableChooser<Command> m_chooser = new SendableChooser<>();
+  
+  public static SendableChooser<Double> chooserA = new SendableChooser<>();
+  private SendableChooser<Double> chooserB = new SendableChooser<>();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -135,8 +138,7 @@ public class RobotContainer {
     autonomousOne = new AutonomousOne(driveTrain, shooter);
     autonomousTwo =  new AutonomousTwo(driveTrain, shooter);
 
-    chooser.addOption("Autonomous Two", autonomousTwo);
-    chooser.setDefaultOption("Autonomous One", autonomousOne);
+    
     SmartDashboard.putData("Autonomous", chooser);
 */
 
@@ -151,6 +153,13 @@ public class RobotContainer {
 
     // Configure the trigger bindings
     configureBindings();
+
+    SmartDashboard.putData("Autonomous Run Time", chooserA);
+    chooserA.setDefaultOption("2 seconds", 2.0);
+    chooserA.addOption("5 seconds", 5.0);
+    chooserA.addOption("8 seconds", 8.0);
+    //chooserB.setDefaultOption("Autonomous One", 8000.0);
+
   }
 
   /**
@@ -238,9 +247,15 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   
-  public Command  getAutonomousCommand() {
+  public Command getAutonomousCommand() {
     // An example command will be run in autonomous
     //return chooser.getSelected();
+
+    
+    //return chooserA.getSelected();
+
+    //chooserA.addOption("Autonomous Two", 4.0);
+    //chooserB.setDefaultOption("Autonomous One", 8000.0);
 
     return new AutonomousOne(driveTrain, null);
 

@@ -46,7 +46,9 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
-      "/Shuffleboard/SmartDashboard/RobotDirection": "Gyro"
+      "/Shuffleboard/SmartDashboard/RobotDirection": "Gyro",
+      "/SmartDashboard/SendableChooser[0]": "String Chooser",
+      "/SmartDashboard/SendableChooser[1]": "String Chooser"
     }
   }
 }

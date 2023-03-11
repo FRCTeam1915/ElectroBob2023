@@ -145,6 +145,8 @@ public final class Constants {
 public static final int SHOOTER = 4;
 public static final int INTAKE = 7;
 
+
+public static double kDefaultAuto = 5.0;
 //Analog inputs
 public static final int RANGE_FINDER = 0;
 

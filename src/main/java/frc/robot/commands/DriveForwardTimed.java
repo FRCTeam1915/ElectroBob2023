@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.DriveTrain;
 
@@ -14,6 +15,8 @@ public class DriveForwardTimed extends CommandBase {
   DriveSubsystem driveTrain;
   private boolean finish = false;
   Timer timer;
+  double drivetime;
+  
   
   /** Creates a new DriveForawrdTimed. */
   public DriveForwardTimed(DriveSubsystem dt) {
@@ -27,9 +30,18 @@ public class DriveForwardTimed extends CommandBase {
   public void initialize() {
     timer.reset();
     timer.start();
-    while(timer.get() < Constants.DRIVE_FORWARD_TIME)
+
+    drivetime = RobotContainer.chooserA.getSelected();
+
+    System.out.println("about to call drive forward for time");
+    System.out.println(drivetime);
+
+    while(timer.get() < drivetime);
+    //while(timer.get() < Constants.DRIVE_FORWARD_TIME)
     {
-     driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, finish);
+      System.out.println("driving forward for");
+      System.out.println(drivetime);
+      driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, finish);
     }
     finish = true;
   }
