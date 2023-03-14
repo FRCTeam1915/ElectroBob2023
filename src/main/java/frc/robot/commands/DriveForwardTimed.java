@@ -28,13 +28,13 @@ public class DriveForwardTimed extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    timer.reset();
-    timer.start();
-
     drivetime = RobotContainer.chooserA.getSelected();
 
     System.out.println("about to call drive forward for time");
     System.out.println(drivetime);
+
+    timer.reset();
+    timer.start();
 
     while(timer.get() < drivetime);
     //while(timer.get() < Constants.DRIVE_FORWARD_TIME)

@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import frc.robot.Constants.AutoConstants;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.AutonomousOne;
@@ -31,15 +33,27 @@ import frc.robot.subsystems.TaynesIntake;
 //import frc.robot.subsystems.Shooter;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveToDistance;
+
+import java.util.List;
+
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryConfig;
+import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -88,7 +102,6 @@ public class RobotContainer {
   //SendableChooser<Command> m_chooser = new SendableChooser<>();
   
   public static SendableChooser<Double> chooserA = new SendableChooser<>();
-  private SendableChooser<Double> chooserB = new SendableChooser<>();
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -103,11 +116,10 @@ public class RobotContainer {
         // Turning is controlled by the X axis of the right stick.
         new RunCommand(
             () -> driveTrain.drive(
-                MathUtil.applyDeadband(-m_driverController.getLeftY(), OIConstants.kDriveDeadband),
-                MathUtil.applyDeadband(-m_driverController.getLeftX(), OIConstants.kDriveDeadband),
-                MathUtil.applyDeadband(-m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                true, false),
-            driveTrain));
+              Math.max(0.0, (Math.abs(m_driverController.getLeftY())-OIConstants.kDriveDeadband)/(1.0-OIConstants.kDriveDeadband)) * Math.signum(-m_driverController.getLeftY()),
+              Math.max(0.0, (Math.abs(m_driverController.getLeftX())-OIConstants.kDriveDeadband)/(1.0-OIConstants.kDriveDeadband)) * Math.signum(-m_driverController.getLeftX()),
+              Math.max(0.0, (Math.abs(m_driverController.getRightX())-OIConstants.kDriveDeadband)/(1.0-OIConstants.kDriveDeadband)) * Math.signum(-m_driverController.getRightX()),
+              true, true),driveTrain));
 
     
 
@@ -248,6 +260,43 @@ public class RobotContainer {
    */
   
   public Command getAutonomousCommand() {
+    /*
+          // Create config for trajectory
+          TrajectoryConfig config = new TrajectoryConfig(
+            AutoConstants.kMaxSpeedMetersPerSecond,
+            AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+            // Add kinematics to ensure max speed is actually obeyed
+            .setKinematics(DriveConstants.kDriveKinematics);
+        // An example trajectory to follow. All units in meters.
+        Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+            // Start at the origin facing the +X direction
+            new Pose2d(0, 0, new Rotation2d(0)),
+            // Pass through these two interior waypoints, making an 's' curve path
+            List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+            // End 3 meters straight ahead of where we started, facing forward
+            new Pose2d(3, 0, new Rotation2d(0)),
+            config);
+        var thetaController = new ProfiledPIDController(
+            AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
+        thetaController.enableContinuousInput(-Math.PI, Math.PI);
+        SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
+            exampleTrajectory,
+            driveTrain::getPose, // Functional interface to feed supplier
+            DriveConstants.kDriveKinematics,
+            // Position controllers
+            new PIDController(AutoConstants.kPXController, 0, 0),
+            new PIDController(AutoConstants.kPYController, 0, 0),
+            thetaController,
+            driveTrain::setModuleStates,
+            driveTrain);
+        // Reset odometry to the starting pose of the trajectory.
+        driveTrain.resetOdometry(exampleTrajectory.getInitialPose());
+    
+
+        // Run path following command, then stop at the end.
+        swerveControllerCommand.andThen(() -> driveTrain.drive(0, 0, 0, false, false));
+*/
+
     // An example command will be run in autonomous
     //return chooser.getSelected();
 
@@ -256,6 +305,9 @@ public class RobotContainer {
 
     //chooserA.addOption("Autonomous Two", 4.0);
     //chooserB.setDefaultOption("Autonomous One", 8000.0);
+
+    //System.out.println("Current Dashboard value");
+    //System.out.println(chooserA.getSelected());
 
     return new AutonomousOne(driveTrain, null);
 
@@ -289,5 +341,7 @@ public class RobotContainer {
    // new DriveForwardTimed(DriveSubsystem);
 
   */ 
+
+
   }
 }
