@@ -31,7 +31,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.TaynesIntake;
 //import frc.robot.subsystems.Shooter;
-import frc.robot.commands.DriveForwardTimed;
+import frc.robot.commands.driveDirection;
 import frc.robot.commands.DriveToDistance;
 
 import java.util.List;
@@ -84,7 +84,7 @@ public class RobotContainer {
 
 //  private final DriveTrain driveTrain; //differential drive
   //private final DriveWithJoysticks driveWithJoystick;
-  private final DriveForwardTimed driveForwardTimed;
+  private final driveDirection driveForwardTimed;
   private final DriveToDistance driveToDistance;
   public static XboxController driverJoystick;
 
@@ -123,7 +123,7 @@ public class RobotContainer {
 
     
 
-    driveForwardTimed = new DriveForwardTimed(driveTrain);
+    driveForwardTimed = new driveDirection(driveTrain, 0, 0);
     driveForwardTimed.addRequirements(driveTrain);
 
     driveToDistance = new DriveToDistance(driveTrain);
@@ -146,7 +146,7 @@ public class RobotContainer {
     intakeBall.addRequirements(intake);
     intake.setDefaultCommand(intakeBall);
 
-/**     //Autonomous Mode
+/*    //Autonomous Mode
     autonomousOne = new AutonomousOne(driveTrain, shooter);
     autonomousTwo =  new AutonomousTwo(driveTrain, shooter);
 
@@ -166,6 +166,7 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
 
+    
     SmartDashboard.putData("Autonomous Run Time", chooserA);
     chooserA.setDefaultOption("2 seconds", 2.0);
     chooserA.addOption("5 seconds", 5.0);

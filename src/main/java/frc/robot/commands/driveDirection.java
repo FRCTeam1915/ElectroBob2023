@@ -4,26 +4,45 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.DriveTrain;
 
-public class DriveToDistance extends CommandBase {
+public class driveDirection extends CommandBase {
+  double thyme;
+  double direction;
   DriveSubsystem driveTrain;
   private boolean finish = false;
+  Timer timer;
+  double drivetime;
   
-  // Creates a new DriveToDistance.
-  public DriveToDistance(DriveSubsystem dt) {
+  
+  //Creates a new DriveForawrdTimed. 
+  public driveDirection(DriveSubsystem dt, double dy, double dz) {
+    thyme = dy;
+    direction = dz; //1 forward, -1 Backward
     driveTrain = dt;
     addRequirements(driveTrain);
-    // Use addRequirements() here to declare subsystem dependencies.
+    timer = new Timer();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //finish = driveTrain.driveToDistance(Constants.SETPOINT_FORWARD, Constants.AUTONOMOUS_SPEED);
+    
+    timer.reset();
+    timer.start();
+
+    while(timer.get() < drivetime);
+    //while(timer.get() < Constants.DRIVE_FORWARD_TIME)
+    {
+
+      //driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, finish);
+    }
+    finish = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
