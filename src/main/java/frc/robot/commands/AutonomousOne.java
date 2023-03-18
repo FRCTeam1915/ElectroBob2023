@@ -19,6 +19,7 @@ public class AutonomousOne extends SequentialCommandGroup {
   //Robot goes forward abrubtly dropping game piece, goes back to push into cell, run out of community
   public AutonomousOne(DriveSubsystem driveTrain, Shooter s) {
     addCommands(new DriveForwardTimed(driveTrain));
+    System.out.println("Autonomous Running");
     //addCommands(new driveDirection(driveTrain, 1, 1));
     //addCommands(new driveDirection(driveTrain, 1.2, -1));
     //addCommands(new driveDirection(driveTrain, 5, 1));
