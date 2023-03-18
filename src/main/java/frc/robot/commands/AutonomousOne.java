@@ -18,9 +18,10 @@ public class AutonomousOne extends SequentialCommandGroup {
   //Creates a new AutonomousOne. 
   //Robot goes forward abrubtly dropping game piece, goes back to push into cell, run out of community
   public AutonomousOne(DriveSubsystem driveTrain, Shooter s) {
-    addCommands(new driveDirection(driveTrain, 1, 1));
-    addCommands(new driveDirection(driveTrain, 1.2, -1));
-    addCommands(new driveDirection(driveTrain, 5, 1));
+    addCommands(new DriveForwardTimed(driveTrain));
+    //addCommands(new driveDirection(driveTrain, 1, 1));
+    //addCommands(new driveDirection(driveTrain, 1.2, -1));
+    //addCommands(new driveDirection(driveTrain, 5, 1));
 //    addCommands(new DriveForwardTimed(driveTrain), new AutoShoot(s));
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
