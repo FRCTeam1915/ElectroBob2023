@@ -38,21 +38,35 @@ public class DriveForwardTimed extends CommandBase {
     timer.reset();
     timer.start();
 
-    while(timer.get() < Constants.DRIVE_FORWARD_TIME);
     //while(timer.get() < Constants.DRIVE_FORWARD_TIME)
+    
+    while(timer.get() < Constants.DRIVE_FORWARD_TIME)
     {
       //System.out.println("driving forward for");
       //System.out.println(drivetime);
       driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, false);
+      
     }
-
+    driveTrain.drive(0, 0, 0, true, false);
     finish = true;
   
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+/*     if(timer.get() < Constants.DRIVE_FORWARD_TIME)
+    {
+      //System.out.println("driving forward for");
+      //System.out.println(drivetime);
+      driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, false);
+      
+    } else {
+      driveTrain.drive(0, 0, 0, true, false);
+      //finish = true;
+    }
+*/
+  }
 
   // Called once the command ends or is interrupted.
   @Override

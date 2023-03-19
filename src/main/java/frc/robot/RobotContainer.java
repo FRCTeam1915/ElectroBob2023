@@ -155,9 +155,10 @@ public class RobotContainer {
 */
 
 
-/*
+
     UsbCamera camera = CameraServer.startAutomaticCapture();
     camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
+/*
     camera = CameraServer.startAutomaticCapture();
     camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
 */
@@ -308,7 +309,7 @@ public class RobotContainer {
     //chooserB.setDefaultOption("Autonomous One", 8000.0);
 
     //System.out.println("Current Dashboard value");
-    //System.out.println(chooserA.getSelected());
+    //;t.println(chooserA.getSelected());
 
     return new AutonomousOne(driveTrain, null);
 

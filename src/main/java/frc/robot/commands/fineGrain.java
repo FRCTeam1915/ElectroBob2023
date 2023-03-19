@@ -21,6 +21,9 @@ public class fineGrain extends CommandBase {
   double uppLow;
   Intake intake;
 
+  double move_low;
+  double move_high;
+
 public fineGrain(Intake i, double tuppHigh, double tuppLow){
   intake = i;
   uppLow = tuppLow;
@@ -41,44 +44,65 @@ public fineGrain(Intake i, double tuppHigh, double tuppLow){
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+    move_high = 0;
+    move_low = 0;
+
+
     Position_LOW = Intake.m_encoder_low.getPosition();
     //If uppLow is greater < 0, move up, elif > 0, move down, else stay still
     if(uppLow < 0) {
-      Intake.m_pid_low.setP(1.4);
-      Intake.m_pid_low.setI(0);
-      Intake.m_pid_low.setD(0);
-      Intake.m_pid_low.setReference(Position_LOW, CANSparkMax.ControlType.kPosition);
-      Intake.m_pid_low.setReference(Position_LOW + Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
+      move_low = 1;
+      System.out.println("Lower arm up");
+      //Intake.m_pid_low.setP(1.4);
+      //Intake.m_pid_low.setI(0);
+      //Intake.m_pid_low.setD(0);
+      //Intake.m_pid_low.setReference(Position_LOW, CANSparkMax.ControlType.kPosition);
+      //Intake.m_pid_low.setReference(Position_LOW + Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
       
     }
     else if(uppLow > 0) {
-      Intake.m_pid_low.setP(1.4);
-      Intake.m_pid_low.setI(0);
-      Intake.m_pid_low.setD(0);
-      Intake.m_pid_low.setReference(Position_LOW, CANSparkMax.ControlType.kPosition);
-      Intake.m_pid_low.setReference(Position_LOW - Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
+      move_low = -1;
+      System.out.println("Lower Arm down");
+      //Intake.m_pid_low.setP(1.4);
+      //Intake.m_pid_low.setI(0);
+      //Intake.m_pid_low.setD(0);
+      //Intake.m_pid_low.setReference(Position_LOW, CANSparkMax.ControlType.kPosition);
+      //Intake.m_pid_low.setReference(Position_LOW - Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
       
     }
 
     Position_HIGH = Intake.m_encoder_high.getPosition();
     //If uppHigh is greater < 0, move up, elif > 0, move down, else stay still
     if(uppHigh < 0) {
-      Intake.m_pid_high.setP(1.4);
-      Intake.m_pid_high.setI(0);
-      Intake.m_pid_high.setD(0);
-      Intake.m_pid_high.setReference(Position_HIGH, CANSparkMax.ControlType.kPosition);
-      Intake.m_pid_high.setReference(Position_HIGH + Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
+      move_high = 1;
+      System.out.println("Upper arm up");
+      //Intake.m_pid_high.setP(1.4);
+      //Intake.m_pid_high.setI(0);
+      //Intake.m_pid_high.setD(0);
+      //Intake.m_pid_high.setReference(Position_HIGH, CANSparkMax.ControlType.kPosition);
+      //Intake.m_pid_high.setReference(Position_HIGH + Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
      
     }
     else if(uppHigh > 0) {
-      Intake.m_pid_high.setP(1.4);
-      Intake.m_pid_high.setI(0);
-      Intake.m_pid_high.setD(0);
-      Intake.m_pid_high.setReference(Position_HIGH, CANSparkMax.ControlType.kPosition);
-      Intake.m_pid_high.setReference(Position_HIGH - Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
-      
+      move_high = -1;
+      System.out.println("Upper arm down");
+      //Intake.m_pid_high.setP(1.4);
+      //Intake.m_pid_high.setI(0);
+      //Intake.m_pid_high.setD(0);
+      //Intake.m_pid_high.setReference(Position_HIGH, CANSparkMax.ControlType.kPosition);
+      //Intake.m_pid_high.setReference(Position_HIGH - Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
     }
+
+    Intake.m_pid_low.setP(1.1);
+    Intake.m_pid_low.setI(0);
+    Intake.m_pid_low.setD(0);
+    //Intake.m_pid_low.setReference(Position_LOW, CANSparkMax.ControlType.kPosition);
+    Intake.m_pid_low.setReference(Position_LOW + (Constants.Intake.fineGrainDistance * move_low), CANSparkMax.ControlType.kPosition);
+    Intake.m_pid_high.setP(1.1);
+    Intake.m_pid_high.setI(0);
+    Intake.m_pid_high.setD(0);
+    //Intake.m_pid_high.setReference(Position_HIGH, CANSparkMax.ControlType.kPosition);
+    Intake.m_pid_high.setReference(Position_HIGH + (Constants.Intake.fineGrainDistance * move_high), CANSparkMax.ControlType.kPosition);
   }
 
   // Called once the command ends or is interrupted.
