@@ -121,6 +121,12 @@ public class RobotContainer {
               Math.max(0.0, (Math.abs(m_driverController.getRightX())-OIConstants.kDriveDeadband)/(1.0-OIConstants.kDriveDeadband)) * Math.signum(-m_driverController.getRightX()),
               true, true),driveTrain));
 
+    intake = new Intake();
+    intake.setDefaultCommand(
+      new RunCommand(
+        () -> intake.setArmPosition(
+            m_IntakeController.getLeftY(), m_IntakeController.getRightY()), intake)
+    );
     
 
     driveForwardTimed = new driveDirection(driveTrain, 0, 0);
@@ -140,7 +146,6 @@ public class RobotContainer {
     autoShoot.addRequirements(shooter);
     */
 
-    intake = new Intake();
     tayke = new TaynesIntake();
     intakeBall = new IntakeBall(intake);
     intakeBall.addRequirements(intake);
@@ -222,26 +227,28 @@ public class RobotContainer {
     //Trigger rightBumper = m_driverController.rightBumper();
     //rightBumper.onTrue(new ShootBall(shooter).repeatedly());
 
-    Trigger leftBumper = m_IntakeController.leftBumper();  //leftBumper
-    leftBumper.whileTrue(new fineGrain(intake, 1, 0));
+    //Trigger leftBumper = m_IntakeController.leftBumper();  //leftBumper
+    //leftBumper.whileTrue(new fineGrain(intake, 1, 0));
 
-    Trigger rightBumper = m_IntakeController.rightBumper(); //rightBumper button
-    rightBumper.whileTrue(new fineGrain(intake, -1, 0));
+    //Trigger rightBumper = m_IntakeController.rightBumper(); //rightBumper button
+    //rightBumper.whileTrue(new fineGrain(intake, -1, 0));
 
-    Trigger povUp = m_IntakeController.povUp(); //changed button povUp
-    povUp.whileTrue(new fineGrain(intake, 0, 1));
+    //Trigger povUp = m_IntakeController.povUp(); //changed button povUp
+    //povUp.whileTrue(new fineGrain(intake, 0, 1));
 
-    Trigger povDown = m_IntakeController.povDown(); //povDown
-    povDown.whileTrue(new fineGrain(intake, 0, -1));
+    //Trigger povDown = m_IntakeController.povDown(); //povDown
+    //povDown.whileTrue(new fineGrain(intake, 0, -1));
 
-    Trigger bbutton = m_driverController.b();
-    bbutton.whileTrue(new tayneTake(tayke, true).repeatedly());
+    //Trigger bbutton = m_driverController.b();
+    Trigger rightBumper = m_IntakeController.rightBumper();
+    rightBumper.whileTrue(new tayneTake(tayke, true).repeatedly());
     
-    Trigger ybutton = m_driverController.y();
-    ybutton.whileTrue(new tayneDrop(tayke, true).repeatedly());
+    //Trigger ybutton = m_driverController.y();
+    Trigger leftBumper = m_IntakeController.leftBumper();
+    leftBumper.whileTrue(new tayneDrop(tayke, true).repeatedly());
     
-    Trigger aButton = m_driverController.a();
-    aButton.onTrue(new DriveToDistance(driveTrain).repeatedly());
+    //Trigger aButton = m_driverController.a();
+    //aButton.onTrue(new DriveToDistance(driveTrain).repeatedly());
 
     Trigger xbutton = m_driverController.x();
     xbutton.whileTrue(new xForm(driveTrain));

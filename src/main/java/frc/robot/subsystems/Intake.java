@@ -32,6 +32,8 @@ public class Intake extends SubsystemBase {
   public static RelativeEncoder m_encoder_high;
   private double target_position_low, target_position_high;
 
+  double Position_LOW, Position_HIGH;
+
   /** Creates a new Intake. */
   public Intake() {
     intake = new Spark(Constants.INTAKE);
@@ -83,6 +85,17 @@ public class Intake extends SubsystemBase {
 //  public void set_position_A() {
 //    m_pid_low.setReference(Constants.Intake.Position_A_LOW, CANSparkMax.ControlType.kPosition);
 //  }
+
+
+  // Move both the lower and upper arm to the desired position
+  public void setArmPosition(double lower,double upper) {
+    Position_LOW = Intake.m_encoder_low.getPosition();
+    Position_HIGH = Intake.m_encoder_high.getPosition();
+
+    Intake.m_pid_low.setReference(Position_LOW + (lower * Constants.Intake.fineGrainDistance), CANSparkMax.ControlType.kPosition);
+    Intake.m_pid_high.setReference(Position_HIGH + (upper * Constants.Intake.fineGrainDistance), CANSparkMax.ControlType.kPosition);
+
+  }
 
   public void intakeBall(XboxController controller, double speed)
   {
