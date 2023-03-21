@@ -246,9 +246,13 @@ public class RobotContainer {
     Trigger xbutton = m_driverController.x();
     xbutton.whileTrue(new xForm(driveTrain));
 
-    Trigger abutton = m_driverController.a();
-    abutton.whileTrue(new gyro_reset(driveTrain));
-    
+    //Trigger abutton = m_driverController.a();
+    //abutton.whileTrue(new gyro_reset(driveTrain));
+
+    // Binds an ExampleCommand to be scheduled when both the 'X' and 'Y' buttons of the driver gamepad are pressed
+    m_driverController.a()
+      .and(m_IntakeController.a())
+      .onTrue(new gyro_reset(driveTrain));    
 
     // JoystickButton aButton = new JoystickButton(driverJoystick, XboxController.Button.kA.value);
     // aButton.whenPressed(new DriveToDistance(driveTrain));
