@@ -149,7 +149,7 @@ public class RobotContainer {
     tayke = new TaynesIntake();
     intakeBall = new IntakeBall(intake);
     intakeBall.addRequirements(intake);
-    intake.setDefaultCommand(intakeBall);
+    //intake.setDefaultCommand(intakeBall);
 
 /*    //Autonomous Mode
     autonomousOne = new AutonomousOne(driveTrain, shooter);
