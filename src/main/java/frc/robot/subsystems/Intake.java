@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import javax.swing.RowFilter.ComparisonType;
+
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -61,7 +63,7 @@ public class Intake extends SubsystemBase {
     m_pid_low.setFeedbackDevice(m_encoder_low);
     m_pid_high.setFeedbackDevice(m_encoder_high);
 
-/** 
+
     m_pid_low.setP(Constants.Intake.kPlow);
     m_pid_low.setI(Constants.Intake.kIlow);
     m_pid_low.setD(Constants.Intake.kDlow);
@@ -69,7 +71,7 @@ public class Intake extends SubsystemBase {
     m_pid_high.setP(Constants.Intake.kPhigh);
     m_pid_high.setI(Constants.Intake.kIhigh);
     m_pid_high.setD(Constants.Intake.kDhigh);
-*/
+
     //target_position_low = 0;
   }
 
@@ -92,9 +94,18 @@ public class Intake extends SubsystemBase {
     Position_LOW = Intake.m_encoder_low.getPosition();
     Position_HIGH = Intake.m_encoder_high.getPosition();
 
-    Intake.m_pid_low.setReference(Position_LOW + (lower * Constants.Intake.fineGrainDistance), CANSparkMax.ControlType.kPosition);
-    Intake.m_pid_high.setReference(Position_HIGH + (upper * Constants.Intake.fineGrainDistance), CANSparkMax.ControlType.kPosition);
+//    double tempLow = Position_LOW + (lower * Constants.Intake.fineGrainDistance);
+//    double tempHigh = Position_HIGH + (upper * Constants.Intake.fineGrainDistance);
+    double tempLow = Position_LOW + (lower * 3.5);
+    double tempHigh = Position_HIGH + (upper * 3.5);
 
+    System.out.println("Setting Arm Position low = " + tempLow);
+    System.out.println("Setting Arm Position high = " + tempHigh);
+
+    Intake.m_pid_low.setReference(tempLow, CANSparkMax.ControlType.kPosition);
+    Intake.m_pid_high.setReference(tempHigh, CANSparkMax.ControlType.kPosition);
+
+    //Intake.m_pid_low.setReference(-10.0, CANSparkMax.ControlType.kPosition);
   }
 
   public void intakeBall(XboxController controller, double speed)

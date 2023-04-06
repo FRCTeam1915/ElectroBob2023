@@ -219,7 +219,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_rearRight.setDesiredState(new SwerveModuleState(0, Rotation2d.fromDegrees(45)));
   }
 
-  public void reset_gyro() {
+  public static void reset_gyro() {
   //if (m_reset) {
     System.out.println("Gyro Reset");
     m_gyro.reset();

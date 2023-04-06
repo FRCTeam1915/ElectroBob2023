@@ -23,11 +23,10 @@ public class gyro_reset extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //ystem.out.println("Gyro Reset");
-    driveTrain.reset_gyro();
+    DriveSubsystem.reset_gyro();
   }
 
-  // Called once the command ends or is interrupted.
+  // Called once the cqommand ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
 

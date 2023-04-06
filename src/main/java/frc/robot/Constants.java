@@ -170,6 +170,15 @@ public static final double SETPOINT_FORWARD = 1.5;
 
 public static final class Intake {
   public static double fineGrainDistance = .3;
+  public static double Position_LOW = -102; //subject to change
+  public static double Position_HIGH = 87;
+  public static final double kPlow = 0.01;
+  public static final double kIlow = 0;
+  public static final double kDlow = 0;
+  public static final double kPhigh = .02;
+  public static final double kIhigh = 0;
+  public static final double kDhigh = 0;
+
   public static final class A {
     public static double Position_LOW = -102; //subject to change
     public static double Position_HIGH = 87;
