@@ -23,7 +23,7 @@ public class gyro_reset extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    DriveSubsystem.reset_gyro();
+    driveTrain.reset_gyro();
   }
 
   // Called once the cqommand ends or is interrupted.
