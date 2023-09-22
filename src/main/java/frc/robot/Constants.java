@@ -174,7 +174,7 @@ public static final class Intake {
   public static double Position_LOW = -102; //subject to change
   public static double Position_HIGH = 87;
 
-  public static double fineGrainDistance = 3.5;
+  public static double fineGrainDistance = 1.5;
 
   public static final double kPlow = 0.01;
   public static final double kIlow = 0;

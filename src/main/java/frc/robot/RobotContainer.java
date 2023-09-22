@@ -20,6 +20,7 @@ import frc.robot.commands.MoveIntake;
 import frc.robot.commands.fineGrain;
 import frc.robot.commands.gyro_reset;
 import frc.robot.commands.tayneDrop;
+import frc.robot.commands.tayneShoot;
 import frc.robot.commands.tayneTake;
 import frc.robot.commands.xForm;
 //import frc.robot.commands.tayneTakeIn;
@@ -233,6 +234,8 @@ public class RobotContainer {
     //Trigger rightBumper = m_IntakeController.rightBumper(); //rightBumper button
     //rightBumper.whileTrue(new fineGrain(intake, -1, 0));
 
+    
+
     Trigger povUp = m_IntakeController.povUp(); //changed button povUp
     povUp.whileTrue(new fineGrain(intake, 0, 1));
 
@@ -246,8 +249,9 @@ public class RobotContainer {
     //Trigger ybutton = m_driverController.y();
     Trigger leftBumper = m_IntakeController.leftBumper();
     leftBumper.whileTrue(new tayneDrop(tayke, true).repeatedly());
-    
-    //Trigger aButton = m_driverController.a();
+
+    Trigger aButton = m_IntakeController.a();
+    aButton.whileTrue(new tayneShoot(tayke, true).repeatedly());
     //aButton.onTrue(new DriveToDistance(driveTrain).repeatedly());
 
     Trigger xbutton = m_driverController.x();

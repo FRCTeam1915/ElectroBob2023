@@ -8,15 +8,16 @@ package frc.robot.commands;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TaynesIntake;
 
-public class tayneTake extends CommandBase {
+public class tayneShoot extends CommandBase {
   boolean inn;
   TaynesIntake tayke;
-  // Creates a new tayneTake.
-  public tayneTake(TaynesIntake ttayke, boolean tinn) {
+  Timer timer;
+  /** Creates a new tayneTake. */
+  public tayneShoot(TaynesIntake ttayke, boolean tinn) {
     inn = tinn;
     tayke = ttayke;
 
@@ -27,29 +28,33 @@ public class tayneTake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
+    //timer.reset();
+    //timer.start();
 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   
-    //if(inn = true) {
-      TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0.5);
-      
-    //} else {
-    //  TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 1);
-    //  SmartDashboard.putNumber("t/f", 1);
-    //}      
+    //while(timer.get() < 2) {
+    //new tayneTakeIn(tayke, false);
+    //  if(inn = true) {
+    //    TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0.1);
+    //  } else {
+        TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 1);
+    //  }
+    //}
+    //}
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0);
 
-  TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0);
-    
   }
+
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
