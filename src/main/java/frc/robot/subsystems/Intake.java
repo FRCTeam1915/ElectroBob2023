@@ -7,8 +7,6 @@
 
 package frc.robot.subsystems;
 
-import javax.swing.RowFilter.ComparisonType;
-
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
@@ -96,10 +94,10 @@ public class Intake extends SubsystemBase {
     Position_LOW = Intake.m_encoder_low.getPosition();
     Position_HIGH = Intake.m_encoder_high.getPosition();
 
-//    double tempLow = Position_LOW + (lower * Constants.Intake.fineGrainDistance);
-//    double tempHigh = Position_HIGH + (upper * Constants.Intake.fineGrainDistance);
-    double tempLow = Position_LOW + (lower * 3.5);
-    double tempHigh = Position_HIGH + (upper * 3.5);
+    double tempLow = Position_LOW + (lower * Constants.Intake.fineGrainDistance);
+    double tempHigh = Position_HIGH + (upper * Constants.Intake.fineGrainDistance);
+    //double tempLow = Position_LOW + (lower * 3.5);
+    //double tempHigh = Position_HIGH + (upper * 3.5);
 
     System.out.println("Setting Arm Position low = " + tempLow);
     System.out.println("Setting Arm Position high = " + tempHigh);
