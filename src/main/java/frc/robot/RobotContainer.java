@@ -233,11 +233,11 @@ public class RobotContainer {
     //Trigger rightBumper = m_IntakeController.rightBumper(); //rightBumper button
     //rightBumper.whileTrue(new fineGrain(intake, -1, 0));
 
-    //Trigger povUp = m_IntakeController.povUp(); //changed button povUp
-    //povUp.whileTrue(new fineGrain(intake, 0, 1));
+    Trigger povUp = m_IntakeController.povUp(); //changed button povUp
+    povUp.whileTrue(new fineGrain(intake, 0, 1));
 
-    //Trigger povDown = m_IntakeController.povDown(); //povDown
-    //povDown.whileTrue(new fineGrain(intake, 0, -1));
+    Trigger povDown = m_IntakeController.povDown(); //povDown
+    povDown.whileTrue(new fineGrain(intake, 0, -1));
 
     //Trigger bbutton = m_driverController.b();
     Trigger rightBumper = m_IntakeController.rightBumper();

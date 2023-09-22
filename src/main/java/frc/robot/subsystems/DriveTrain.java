@@ -39,7 +39,7 @@ public class DriveTrain extends SubsystemBase {
   
   /** Creates a new DriveTrain. */
   public DriveTrain() {
-    /**
+    /*
     leftFront = new Spark(Constants.LEFT_FRONT);
     leftFront.setInverted(false);
     rightFront = new Spark(Constants.RIGHT_FRONT);

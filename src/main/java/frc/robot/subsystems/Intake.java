@@ -15,6 +15,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.SparkMaxRelativeEncoder;
 import com.revrobotics.CANSparkMax.ControlType;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -41,6 +42,7 @@ public class Intake extends SubsystemBase {
     intake = new Spark(Constants.INTAKE);
     m_motor_low = new CANSparkMax(Constants.Intake.CAN_low, MotorType.kBrushless);
     m_motor_high = new CANSparkMax(Constants.Intake.CAN_high, MotorType.kBrushless);
+    m_motor_low.setIdleMode(IdleMode.kBrake);
 //    m_encoder_low = m_motor_low.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,40960);
 //    m_encoder_high = m_motor_high.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,4096);
     m_encoder_low = m_motor_low.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor,42);
@@ -101,6 +103,7 @@ public class Intake extends SubsystemBase {
 
     System.out.println("Setting Arm Position low = " + tempLow);
     System.out.println("Setting Arm Position high = " + tempHigh);
+    
 
     Intake.m_pid_low.setReference(tempLow, CANSparkMax.ControlType.kPosition);
     Intake.m_pid_high.setReference(tempHigh, CANSparkMax.ControlType.kPosition);
