@@ -7,15 +7,19 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.DriveTrain;
 
 public class DriveForwardTimed extends CommandBase {
-  DriveTrain driveTrain;
+  DriveSubsystem driveTrain;
   private boolean finish = false;
   Timer timer;
+  double drivetime;
+  
   
   /** Creates a new DriveForawrdTimed. */
-  public DriveForwardTimed(DriveTrain dt) {
+  public DriveForwardTimed(DriveSubsystem dt) {
     driveTrain = dt;
     addRequirements(driveTrain);
     timer = new Timer();
@@ -24,13 +28,25 @@ public class DriveForwardTimed extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    /* //Autonomous going in a straight line to leave community
+    drivetime = RobotContainer.chooserA.getSelected();
+
+    System.out.println("about to call drive forward for time");
+    System.out.println(drivetime);
+
     timer.reset();
     timer.start();
-    while(timer.get() < Constants.DRIVE_FORWARD_TIME)
+
+    while(timer.get() < drivetime);
+    //while(timer.get() < Constants.DRIVE_FORWARD_TIME)
     {
-      driveTrain.driveForward(Constants.AUTONOMOUS_SPEED);
+      System.out.println("driving forward for");
+      System.out.println(drivetime);
+      driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, finish);
     }
+
     finish = true;
+    */
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -40,7 +56,7 @@ public class DriveForwardTimed extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    driveTrain.stop();
+    //driveTrain.stop();
   }
 
   // Returns true when the command should end.

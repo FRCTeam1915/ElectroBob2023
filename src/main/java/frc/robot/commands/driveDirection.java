@@ -7,28 +7,40 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.subsystems.Shooter;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.DriveTrain;
 
-public class AutoShoot extends CommandBase {
-  Shooter shooter;
-  Timer timer;
+public class driveDirection extends CommandBase {
+  double thyme;
+  double direction;
+  DriveSubsystem driveTrain;
   private boolean finish = false;
-  // Creates a new AutoShoot. 
-  public AutoShoot(Shooter s) {
-    shooter = s;
-    addRequirements(shooter);
+  Timer timer;
+  double drivetime;
+  
+  
+  //Creates a new DriveForawrdTimed. 
+  public driveDirection(DriveSubsystem dt, double dy, double dz) {
+    thyme = dy;
+    direction = dz; //1 forward, -1 Backward
+    driveTrain = dt;
+    addRequirements(driveTrain);
     timer = new Timer();
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
     timer.reset();
     timer.start();
-    while(timer.get() < Constants.AUTO_SHOOT_TIME)
+
+    while(timer.get() < drivetime);
+    //while(timer.get() < Constants.DRIVE_FORWARD_TIME)
     {
-      shooter.ShootBall(Constants.SHOOTER_SPEED);
+
+      //driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, finish);
     }
     finish = true;
   }
@@ -40,12 +52,12 @@ public class AutoShoot extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.stop();
+    //driveTrain.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finish;
   }
 }

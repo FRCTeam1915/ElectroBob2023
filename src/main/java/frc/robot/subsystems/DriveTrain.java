@@ -15,11 +15,22 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+import com.ctre.phoenix.motorcontrol.Faults;
+import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 public class DriveTrain extends SubsystemBase {
+/**
   CANSparkMax leftFront;
   CANSparkMax rightFront;
   CANSparkMax leftBack;
   CANSparkMax rightBack;
+*/
+  //WPI_TalonSRX rightFront;
+  //WPI_TalonSRX rightBack;
+  //WPI_TalonSRX leftFront;
+  
+
   MotorControllerGroup leftMotors;
   MotorControllerGroup rightMotors;
   DifferentialDrive drive;
@@ -28,7 +39,7 @@ public class DriveTrain extends SubsystemBase {
   
   /** Creates a new DriveTrain. */
   public DriveTrain() {
-    /**
+    /*
     leftFront = new Spark(Constants.LEFT_FRONT);
     leftFront.setInverted(false);
     rightFront = new Spark(Constants.RIGHT_FRONT);
@@ -37,19 +48,18 @@ public class DriveTrain extends SubsystemBase {
     leftBack.setInverted(false);
     rightBack = new Spark(Constants.RIGHT_BACK);
     rightBack.setInverted(false);
-    */
+    
 
-    leftFront = new CANSparkMax(Constants.LEFT_FRONT, MotorType.kBrushless);
+    leftFront = new CANSparkMax(Constants.LEFT_FRONT, MotorType.kBrushed);
     leftFront.setInverted(false);
-    rightFront = new CANSparkMax(Constants.RIGHT_FRONT, MotorType.kBrushless);
+    rightFront = new CANSparkMax(Constants.RIGHT_FRONT, MotorType.kBrushed);
     rightFront.setInverted(false);
     leftBack = new CANSparkMax(Constants.LEFT_BACK, MotorType.kBrushless);
     leftBack.setInverted(false);
     rightBack = new CANSparkMax(Constants.RIGHT_BACK, MotorType.kBrushless);
     rightBack.setInverted(false);
-
-    leftMotors = new MotorControllerGroup(leftFront,leftBack);
-    rightMotors = new MotorControllerGroup(rightFront,rightBack);
+    */
+    
 
 
 
@@ -64,7 +74,7 @@ public class DriveTrain extends SubsystemBase {
 
   public void driveWithJoysticks(XboxController controller, double speed)
   {
-  drive.arcadeDrive(controller.getRawAxis(Constants.XBOX_LEFT_Y_AXIS)*speed, controller.getRawAxis(Constants.XBOX_LEFT_X_AXIS)*speed);
+  drive.arcadeDrive(controller.getLeftY()*speed, controller.getLeftX()*speed);
   }
 
   public void driveForward(double speed)

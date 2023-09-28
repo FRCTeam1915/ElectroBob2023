@@ -5,15 +5,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.DriveSubsystem;
 
-public class ShootBall extends CommandBase {
-  Shooter shooter;
-  // Creates a new ShootBall. 
-  public ShootBall(Shooter s) {
-    shooter = s;
-    addRequirements(shooter);
+public class gyro_reset extends CommandBase {
+  DriveSubsystem driveTrain;
+  /** Creates a new gyro_reset. */
+  public gyro_reset(DriveSubsystem dt) {
+    driveTrain = dt;
+    addRequirements(driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -24,15 +23,12 @@ public class ShootBall extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //Video shows lower case shootball, made uppercase to make errors go away
-    shooter.ShootBall(Constants.SHOOTER_SPEED);
+    driveTrain.reset_gyro();
   }
 
-  // Called once the command ends or is interrupted.
+  // Called once the cqommand ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    shooter.stop();
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override

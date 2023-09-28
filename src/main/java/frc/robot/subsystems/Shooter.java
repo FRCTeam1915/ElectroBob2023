@@ -10,7 +10,7 @@ import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
   Spark shooter;
-  /** Creates a new Shooter. */
+  //Creates a new Shooter
   public Shooter() {
     shooter = new Spark(Constants.SHOOTER);
     }

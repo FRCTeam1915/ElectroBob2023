@@ -6,14 +6,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.DriveTrain;
 
 public class DriveToDistance extends CommandBase {
-  DriveTrain driveTrain;
+  DriveSubsystem driveTrain;
   private boolean finish = false;
   
-  /** Creates a new DriveToDistance. */
-  public DriveToDistance(DriveTrain dt) {
+  // Creates a new DriveToDistance.
+  public DriveToDistance(DriveSubsystem dt) {
     driveTrain = dt;
     addRequirements(driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -22,7 +23,7 @@ public class DriveToDistance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    finish = driveTrain.driveToDistance(Constants.SETPOINT_FORWARD, Constants.AUTONOMOUS_SPEED);
+    //finish = driveTrain.driveToDistance(Constants.SETPOINT_FORWARD, Constants.AUTONOMOUS_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -32,7 +33,7 @@ public class DriveToDistance extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    driveTrain.stop();
+    //driveTrain.stop();
   }
 
   // Returns true when the command should end.
