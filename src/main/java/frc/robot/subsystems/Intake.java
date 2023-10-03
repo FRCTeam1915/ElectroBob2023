@@ -99,8 +99,8 @@ public class Intake extends SubsystemBase {
     //double tempLow = Position_LOW + (lower * 3.5);
     //double tempHigh = Position_HIGH + (upper * 3.5);
 
-    System.out.println("Setting Arm Position low = " + tempLow);
-    System.out.println("Setting Arm Position high = " + tempHigh);
+    //System.out.println("Setting Arm Position low = " + tempLow);
+    //System.out.println("Setting Arm Position high = " + tempHigh);
     
 
     Intake.m_pid_low.setReference(tempLow, CANSparkMax.ControlType.kPosition);

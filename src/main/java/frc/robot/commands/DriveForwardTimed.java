@@ -23,12 +23,14 @@ public class DriveForwardTimed extends CommandBase {
     driveTrain = dt;
     addRequirements(driveTrain);
     timer = new Timer();
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    /* //Autonomous going in a straight line to leave community
+    
+    //Autonomous going in a straight line to leave community
     drivetime = RobotContainer.chooserA.getSelected();
 
     System.out.println("about to call drive forward for time");
@@ -37,16 +39,16 @@ public class DriveForwardTimed extends CommandBase {
     timer.reset();
     timer.start();
 
-    while(timer.get() < drivetime);
+    while(timer.get() <= drivetime)
     //while(timer.get() < Constants.DRIVE_FORWARD_TIME)
     {
       System.out.println("driving forward for");
       System.out.println(drivetime);
-      driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, finish);
+      driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, true);
     }
 
     finish = true;
-    */
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.

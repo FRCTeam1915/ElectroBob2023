@@ -33,15 +33,14 @@ public class driveDirection extends CommandBase {
   @Override
   public void initialize() {
     
-    timer.reset();
-    timer.start();
+    //timer.reset();
+    //timer.start();
 
-    while(timer.get() < drivetime);
+    //while(timer.get() < drivetime);{
     //while(timer.get() < Constants.DRIVE_FORWARD_TIME)
-    {
 
       //driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, finish);
-    }
+  
     finish = true;
   }
 

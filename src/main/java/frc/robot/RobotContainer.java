@@ -14,6 +14,7 @@ import frc.robot.commands.AutonomousTwo;
 //import frc.robot.commands.AutonomousOne;
 //import frc.robot.commands.AutonomousTwo;
 import frc.robot.commands.Autos;
+import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.MoveIntake;
@@ -174,9 +175,11 @@ public class RobotContainer {
 
     
     SmartDashboard.putData("Autonomous Run Time", chooserA);
+    chooserA.setDefaultOption("0 seconds", 0.0);
     chooserA.setDefaultOption("2 seconds", 2.0);
     chooserA.addOption("5 seconds", 5.0);
     chooserA.addOption("8 seconds", 8.0);
+    chooserA.addOption("10 seconds", 10.0);
     //chooserB.setDefaultOption("Autonomous One", 8000.0);
 
   }
@@ -321,7 +324,7 @@ public class RobotContainer {
     //System.out.println("Current Dashboard value");
     //System.out.println(chooserA.getSelected());
 
-    return new AutonomousOne(driveTrain, null);
+    //return new AutonomousOne(driveTrain, null);
 
     /*
     return new RunCommand(
@@ -348,11 +351,11 @@ public class RobotContainer {
 
     //Place game piece
     new tayneDrop(tayke, false);
-  
+  */
     //Leave community
-   // new DriveForwardTimed(DriveSubsystem);
+   return new DriveForwardTimed(driveTrain);
 
-  */ 
+  
 
 
   }
