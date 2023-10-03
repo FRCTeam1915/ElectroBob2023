@@ -41,8 +41,8 @@ public class Intake extends SubsystemBase {
     m_motor_low = new CANSparkMax(Constants.Intake.CAN_low, MotorType.kBrushless);
     m_motor_high = new CANSparkMax(Constants.Intake.CAN_high, MotorType.kBrushless);
     m_motor_low.setIdleMode(IdleMode.kBrake);
-//    m_encoder_low = m_motor_low.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,40960);
-//    m_encoder_high = m_motor_high.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,4096);
+    //m_encoder_low = m_motor_low.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,40960);
+    //m_encoder_high = m_motor_high.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,4096);
     m_encoder_low = m_motor_low.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor,42);
     m_encoder_high = m_motor_high.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor,42);
 
@@ -52,10 +52,10 @@ public class Intake extends SubsystemBase {
     //encoder.getPosition();
 
     m_encoder_low.setPosition(0);
-    m_encoder_high.setPosition(0);
+    //m_encoder_high.setPosition(0);
 
     m_motor_low.restoreFactoryDefaults();
-    m_motor_high.restoreFactoryDefaults();
+    //m_motor_high.restoreFactoryDefaults();
 
     m_pid_low = m_motor_low.getPIDController();
     m_pid_high = m_motor_high.getPIDController();
