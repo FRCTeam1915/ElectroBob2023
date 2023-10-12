@@ -167,7 +167,7 @@ public static final int CAMERA_RES_X = 320;
 public static final int CAMERA_RES_Y = 240;
 public static final double AUTO_SHOOT_TIME = 2.0;
 public static final double SETPOINT_FORWARD = 1.5;
-
+public static double addSpeed;
 public static final class Intake {
 
  // public static double fineGrainDistance = 1.5;
@@ -175,6 +175,7 @@ public static final class Intake {
   public static double Position_HIGH = 87;
 
   public static double fineGrainDistance = 1.5;
+
 
   public static final double kPlow = 0.01;
   public static final double kIlow = 0;
