@@ -215,7 +215,7 @@ public static final class Intake {
     public static final double kDhigh = 0;
   }
 
-  public static final int CAN_high = 21;
+  //public static final int CAN_high = 21;
   public static final int CAN_low = 22;
 }
 

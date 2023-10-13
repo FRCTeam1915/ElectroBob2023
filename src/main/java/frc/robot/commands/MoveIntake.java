@@ -60,11 +60,11 @@ public class MoveIntake extends CommandBase {
     Intake.m_pid_low.setI(kIlow);
     Intake.m_pid_low.setD(kDlow);
 
-    Intake.m_pid_high.setP(kPhigh);
-    Intake.m_pid_high.setI(kIhigh);
-    Intake.m_pid_high.setD(kDhigh);
+   // Intake.m_pid_high.setP(kPhigh);
+   // Intake.m_pid_high.setI(kIhigh);
+    //Intake.m_pid_high.setD(kDhigh);
     Intake.m_pid_low.setReference(Position_LOW, CANSparkMax.ControlType.kPosition);
-    Intake.m_pid_high.setReference(Position_HIGH, CANSparkMax.ControlType.kPosition);
+    //Intake.m_pid_high.setReference(Position_HIGH, CANSparkMax.ControlType.kPosition);
   }
 
   // Called once the command ends or is interrupted.

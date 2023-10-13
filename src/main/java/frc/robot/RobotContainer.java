@@ -14,6 +14,7 @@ import frc.robot.commands.AutonomousTwo;
 //import frc.robot.commands.AutonomousOne;
 //import frc.robot.commands.AutonomousTwo;
 import frc.robot.commands.Autos;
+import frc.robot.commands.BBUTTON;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.commands.IntakeBall;
@@ -35,6 +36,7 @@ import frc.robot.subsystems.TaynesIntake;
 //import frc.robot.subsystems.Shooter;
 import frc.robot.commands.driveDirection;
 import frc.robot.commands.DriveToDistance;
+import frc.robot.commands.BBUTTON;
 
 import java.util.List;
 
@@ -60,6 +62,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+
 
 
 /**
@@ -250,7 +253,8 @@ public class RobotContainer {
     rightBumper.whileTrue(new tayneTake(tayke, true).repeatedly());
 
     Trigger bbutton = m_IntakeController.b();
-    bbutton.onTrue(new fineGrain(intake, 0, 0, true).repeatedly());
+    bbutton.onTrue(new BBUTTON(true).repeatedly());
+    bbutton.onFalse(new BBUTTON(false).repeatedly());
     
     //Trigger ybutton = m_driverController.y();
     Trigger leftBumper = m_IntakeController.leftBumper();

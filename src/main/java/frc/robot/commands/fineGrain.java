@@ -21,14 +21,13 @@ public class fineGrain extends CommandBase {
   double uppHigh;
   double uppLow;
   Intake intake;
-  boolean bbutton;
-  double addSpeed;
+
 
 public fineGrain(Intake i, double tuppHigh, double tuppLow, boolean tbbutton){
   intake = i;
   uppLow = tuppLow;
   uppHigh = tuppHigh;
-  bbutton = tbbutton;
+
   
   /** Creates a new fineGrain. */
 
@@ -48,21 +47,14 @@ public fineGrain(Intake i, double tuppHigh, double tuppLow, boolean tbbutton){
     
     Position_LOW = Intake.m_encoder_low.getPosition();
     //If uppLow is greater < 0, move up, elif > 0, move down, else stay still
-    if(bbutton == true){
-      addSpeed = .5;
-      SmartDashboard.putBoolean("B button", bbutton);
-    }
-    else{
-      SmartDashboard.putBoolean("B button", bbutton);
-      //addSpeed = 0;
-    }
+
     if(uppLow < 0) {
       Intake.m_pid_low.setP(0.1);
       Intake.m_pid_low.setI(0);
       Intake.m_pid_low.setD(0);
       Intake.m_pid_low.setReference(Position_LOW, CANSparkMax.ControlType.kPosition);
-      Intake.m_pid_low.setReference(Position_LOW + Constants.Intake.fineGrainDistance + addSpeed, CANSparkMax.ControlType.kPosition);
-      SmartDashboard.putBoolean("B button", bbutton);
+      Intake.m_pid_low.setReference(Position_LOW + Constants.Intake.fineGrainDistance + BBUTTON.addSpeed, CANSparkMax.ControlType.kPosition);
+      
       
     }
     else if(uppLow > 0) {
@@ -70,12 +62,12 @@ public fineGrain(Intake i, double tuppHigh, double tuppLow, boolean tbbutton){
       Intake.m_pid_low.setI(0);
       Intake.m_pid_low.setD(0);
       Intake.m_pid_low.setReference(Position_LOW, CANSparkMax.ControlType.kPosition);
-      Intake.m_pid_low.setReference(Position_LOW - Constants.Intake.fineGrainDistance + addSpeed, CANSparkMax.ControlType.kPosition);
-      SmartDashboard.putBoolean("B button", bbutton);
+      Intake.m_pid_low.setReference(Position_LOW - Constants.Intake.fineGrainDistance + BBUTTON.addSpeed, CANSparkMax.ControlType.kPosition);
+      
     }
     
 
-    Position_HIGH = Intake.m_encoder_high.getPosition();
+  /*  Position_HIGH = Intake.m_encoder_high.getPosition();
     //If uppHigh is greater < 0, move up, elif > 0, move down, else stay still
     if(uppHigh < 0) {
       Intake.m_pid_high.setP(.1);
@@ -93,6 +85,7 @@ public fineGrain(Intake i, double tuppHigh, double tuppLow, boolean tbbutton){
       Intake.m_pid_high.setReference(Position_HIGH - Constants.Intake.fineGrainDistance, CANSparkMax.ControlType.kPosition);
       
     }
+    */
   }
 
   // Called once the command ends or is interrupted.

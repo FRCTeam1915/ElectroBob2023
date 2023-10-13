@@ -39,7 +39,7 @@ public class Intake extends SubsystemBase {
   public Intake() {
     intake = new Spark(Constants.INTAKE);
     m_motor_low = new CANSparkMax(Constants.Intake.CAN_low, MotorType.kBrushless);
-    m_motor_high = new CANSparkMax(Constants.Intake.CAN_high, MotorType.kBrushless);
+    //m_motor_high = new CANSparkMax(Constants.Intake.CAN_high, MotorType.kBrushless);
     m_motor_low.setIdleMode(IdleMode.kBrake);
     //m_encoder_low = m_motor_low.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,40960);
     //m_encoder_high = m_motor_high.getEncoder(SparkMaxRelativeEncoder.Type.kQuadrature,4096);
@@ -58,19 +58,19 @@ public class Intake extends SubsystemBase {
     //m_motor_high.restoreFactoryDefaults();
 
     m_pid_low = m_motor_low.getPIDController();
-    m_pid_high = m_motor_high.getPIDController();
+   // m_pid_high = m_motor_high.getPIDController();
 
     m_pid_low.setFeedbackDevice(m_encoder_low);
-    m_pid_high.setFeedbackDevice(m_encoder_high);
+    //m_pid_high.setFeedbackDevice(m_encoder_high);
 
 
     m_pid_low.setP(Constants.Intake.kPlow);
     m_pid_low.setI(Constants.Intake.kIlow);
     m_pid_low.setD(Constants.Intake.kDlow);
 
-    m_pid_high.setP(Constants.Intake.kPhigh);
-    m_pid_high.setI(Constants.Intake.kIhigh);
-    m_pid_high.setD(Constants.Intake.kDhigh);
+   // m_pid_high.setP(Constants.Intake.kPhigh);
+   // m_pid_high.setI(Constants.Intake.kIhigh);
+   // m_pid_high.setD(Constants.Intake.kDhigh);
 
     //target_position_low = 0;
   }
@@ -80,7 +80,7 @@ public class Intake extends SubsystemBase {
     // This method will be called once per scheduler run
     SmartDashboard.putNumber("m_motor_low Position", m_encoder_low.getPosition());
     //SmartDashboard.putNumber("m_motor_low Target Position", target_position_low);
-    SmartDashboard.putNumber("m_motor_high Position", m_encoder_high.getPosition());
+    //SmartDashboard.putNumber("m_motor_high Position", m_encoder_high.getPosition());
     //SmartDashboard.putNumber("m_motor_high Target Position", target_position_high);
   }
 
@@ -104,7 +104,7 @@ public class Intake extends SubsystemBase {
     
 
     Intake.m_pid_low.setReference(tempLow, CANSparkMax.ControlType.kPosition);
-    Intake.m_pid_high.setReference(tempHigh, CANSparkMax.ControlType.kPosition);
+    //Intake.m_pid_high.setReference(tempHigh, CANSparkMax.ControlType.kPosition);
 
     //Intake.m_pid_low.setReference(-10.0, CANSparkMax.ControlType.kPosition);
   }
