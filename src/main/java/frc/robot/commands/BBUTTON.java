@@ -11,11 +11,11 @@ public class BBUTTON extends CommandBase {
      static double addSpeed;
 
    
-     
+     //creates new bbbbbutton
     public BBUTTON(boolean tbbutton) {
        
             
-        
+        //if bbbbbutton is true sets speed to 0.5 otherwise set to 0
         if(bbutton == true){
             addSpeed = .5;
             SmartDashboard.putBoolean("B button", bbutton);
@@ -26,7 +26,7 @@ public class BBUTTON extends CommandBase {
           }
            
             
-        
+        //creates class that just returns speed
     } 
      public double speed() {
         return addSpeed;
