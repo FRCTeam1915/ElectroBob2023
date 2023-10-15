@@ -9,61 +9,51 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.DriveTrain;
 
 public class DriveForwardTimed extends CommandBase {
-  DriveSubsystem driveTrain;
-  private boolean finish = false;
-  Timer timer;
-  double drivetime;
-  
-  
-  /** Creates a new DriveForawrdTimed. */
-  public DriveForwardTimed(DriveSubsystem dt) {
-    driveTrain = dt;
-    addRequirements(driveTrain);
-    timer = new Timer();
+    DriveSubsystem driveTrain;
+    private boolean finish = false;
+    Timer timer;
+    double driveTime;
 
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    
-    //Autonomous going in a straight line to leave community
-    drivetime = RobotContainer.chooserA.getSelected();
-
-    System.out.println("about to call drive forward for time");
-    System.out.println(drivetime);
-
-    timer.reset();
-    timer.start();
-
-    while(timer.get() <= drivetime)
-    //while(timer.get() < Constants.DRIVE_FORWARD_TIME)
-    {
-      System.out.println("driving forward for");
-      System.out.println(drivetime);
-      driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, true);
+    /** Creates a new DriveForawrdTimed. */
+    public DriveForwardTimed(DriveSubsystem dt) {
+        driveTrain = dt;
+        addRequirements(driveTrain);
+        timer = new Timer();
     }
 
-    finish = true;
-    
-  }
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        //Autonomous going in a straight line to leave community
+        driveTime = RobotContainer.chooserA.getSelected();
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {}
+        System.out.println("about to call drive forward for time " + driveTime);
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    //driveTrain.stop();
-  }
+        timer.reset();
+        timer.start();
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return finish;
-  }
+        while (timer.get() <= driveTime) {
+          System.out.println("driving forward for " + driveTime);
+          driveTrain.drive(Constants.AUTONOMOUS_SPEED, 0, 0, true, true);
+        }
+        finish = true;
+    }
+
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {}
+
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        //driveTrain.stop();
+    }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return finish;
+    }
 }
