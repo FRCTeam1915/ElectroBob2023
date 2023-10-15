@@ -26,7 +26,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.TaynesIntake;
 //import frc.robot.subsystems.Shooter;
-import frc.robot.commands.driveDirection;
+import frc.robot.commands.DriveDirection;
 import frc.robot.commands.DriveToDistance;
 
 import edu.wpi.first.wpilibj.XboxController;
@@ -63,7 +63,7 @@ public class RobotContainer {
 
 //  private final DriveTrain driveTrain; //differential drive
   //private final DriveWithJoysticks driveWithJoystick;
-  private final driveDirection driveForwardTimed;
+  private final DriveDirection driveForwardTimed;
   private final DriveToDistance driveToDistance;
   public static XboxController driverJoystick;
 
@@ -108,7 +108,7 @@ public class RobotContainer {
     );
     
 
-    driveForwardTimed = new driveDirection(driveTrain, 0, 0);
+    driveForwardTimed = new DriveDirection(driveTrain, 0, 0);
     driveForwardTimed.addRequirements(driveTrain);
 
     driveToDistance = new DriveToDistance(driveTrain);
