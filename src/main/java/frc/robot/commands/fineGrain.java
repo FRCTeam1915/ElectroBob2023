@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 import com.revrobotics.CANSparkMax;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 //import frc.robot.Constants.Intake;
@@ -53,7 +52,7 @@ public fineGrain(Intake i, double tuppHigh, double tuppLow, boolean tbbutton){
       Intake.m_pid_low.setI(0);
       Intake.m_pid_low.setD(0);
       Intake.m_pid_low.setReference(Position_LOW, CANSparkMax.ControlType.kPosition);
-      Intake.m_pid_low.setReference(Position_LOW + Constants.Intake.fineGrainDistance + BBUTTON.addSpeed, CANSparkMax.ControlType.kPosition);
+      Intake.m_pid_low.setReference(Position_LOW + Constants.Intake.fineGrainDistance + Button.speed, CANSparkMax.ControlType.kPosition);
       
       
     }
@@ -62,7 +61,7 @@ public fineGrain(Intake i, double tuppHigh, double tuppLow, boolean tbbutton){
       Intake.m_pid_low.setI(0);
       Intake.m_pid_low.setD(0);
       Intake.m_pid_low.setReference(Position_LOW, CANSparkMax.ControlType.kPosition);
-      Intake.m_pid_low.setReference(Position_LOW - Constants.Intake.fineGrainDistance + BBUTTON.addSpeed, CANSparkMax.ControlType.kPosition);
+      Intake.m_pid_low.setReference(Position_LOW - Constants.Intake.fineGrainDistance + Button.speed, CANSparkMax.ControlType.kPosition);
       
     }
     
