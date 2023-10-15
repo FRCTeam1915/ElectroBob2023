@@ -16,7 +16,7 @@ import frc.robot.commands.FineGrain;
 import frc.robot.commands.GyroReset;
 import frc.robot.commands.tayneDrop;
 import frc.robot.commands.tayneShoot;
-import frc.robot.commands.tayneTake;
+import frc.robot.commands.TayneTake;
 import frc.robot.commands.xForm;
 //import frc.robot.commands.tayneTakeIn;
 //import frc.robot.commands.tayneTakeOut;
@@ -224,7 +224,7 @@ public class RobotContainer {
 
     //Trigger bbutton = m_driverController.b();
     Trigger rightBumper = m_IntakeController.rightBumper();
-    rightBumper.whileTrue(new tayneTake(tayke, true).repeatedly());
+    rightBumper.whileTrue(new TayneTake(tayke, true).repeatedly());
 
     Trigger bbutton = m_IntakeController.b();
     bbutton.onTrue(new Button(true).repeatedly());

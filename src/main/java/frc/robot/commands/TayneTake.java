@@ -4,19 +4,15 @@
 
 package frc.robot.commands;
 
-//import javax.lang.model.util.ElementScanner14;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.TaynesIntake;
 
-public class tayneTake extends CommandBase {
+public class TayneTake extends CommandBase {
   boolean inn;
   TaynesIntake tayke;
   // Creates a new tayneTake.
-  public tayneTake(TaynesIntake ttayke, boolean tinn) {
+  public TayneTake(TaynesIntake ttayke, boolean tinn) {
     inn = tinn;
     tayke = ttayke;
 
@@ -33,23 +29,15 @@ public class tayneTake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   
-    //if(inn = true) {
       TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0.5);
-      
-    //} else {
-    //  TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 1);
-    //  SmartDashboard.putNumber("t/f", 1);
-    //}      
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
   TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0);
-    
   }
+
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
