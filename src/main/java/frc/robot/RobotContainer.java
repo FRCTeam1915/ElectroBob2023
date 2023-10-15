@@ -12,7 +12,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Button;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.IntakeBall;
-import frc.robot.commands.fineGrain;
+import frc.robot.commands.FineGrain;
 import frc.robot.commands.GyroReset;
 import frc.robot.commands.tayneDrop;
 import frc.robot.commands.tayneShoot;
@@ -217,10 +217,10 @@ public class RobotContainer {
     
 
     Trigger povUp = m_IntakeController.povUp(); //changed button povUp
-    povUp.whileTrue(new fineGrain(intake, 0, 1,false));
+    povUp.whileTrue(new FineGrain(intake, 0, 1,false));
 
     Trigger povDown = m_IntakeController.povDown(); //povDown
-    povDown.whileTrue(new fineGrain(intake, 0, -1,false));
+    povDown.whileTrue(new FineGrain(intake, 0, -1,false));
 
     //Trigger bbutton = m_driverController.b();
     Trigger rightBumper = m_IntakeController.rightBumper();

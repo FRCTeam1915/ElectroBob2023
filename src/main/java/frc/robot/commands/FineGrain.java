@@ -8,13 +8,9 @@ import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-//import frc.robot.Constants.Intake;
 import frc.robot.subsystems.Intake;
-
-
-
   
-public class fineGrain extends CommandBase {
+public class FineGrain extends CommandBase {
   double Position_LOW;
   double Position_HIGH;
   double uppHigh;
@@ -22,7 +18,7 @@ public class fineGrain extends CommandBase {
   Intake intake;
 
 
-public fineGrain(Intake i, double tuppHigh, double tuppLow, boolean tbbutton){
+public FineGrain(Intake i, double tuppHigh, double tuppLow, boolean tbbutton){
   intake = i;
   uppLow = tuppLow;
   uppHigh = tuppHigh;
