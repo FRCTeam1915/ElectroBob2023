@@ -1,0 +1,71 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+package frc.robot.commands;
+
+//import javax.lang.model.util.ElementScanner14;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
+import frc.robot.commands.tayneTake;
+
+public class holdButton extends CommandBase {
+  boolean inn;
+  boolean holdButton;
+  boolean tayneTake;
+  
+  // Creates a new tayneTake.
+  public holdButton(boolean tinn) {
+    inn = tinn;
+    
+
+
+    // Use addRequirements() here to declare subsystem dependencies.
+   // addRequirements(tayneTake);
+  }
+
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+         if(holdButton == true){ 
+         SmartDashboard.putBoolean("A button", holdButton);
+          tayneTake.tayneTake.set(ControlMode.PercentOutput, 0.1);
+
+      }
+      else{
+        SmartDashboard.putBoolean("A button", holdButton);
+        tayneTake.tayneTake.set(ControlMode.PercentOutput, 0);
+      }
+    //if(inn = true) {
+      tayneTake.tayneTake.set(ControlMode.PercentOutput, 0.5);
+      
+
+    //} else {
+    //  TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 1);
+    //  SmartDashboard.putNumber("t/f", 1);
+    //}      
+  }
+
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+
+  TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0);
+    
+  }
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return false;
+  }
+}
