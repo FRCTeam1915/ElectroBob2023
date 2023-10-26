@@ -35,7 +35,7 @@ public class tayneTake extends CommandBase {
   public void execute() {
    
     //if(inn = true) {
-      TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 0.5);
+      TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 1);
       
     //} else {
     //  TaynesIntake.taynesIntake.set(ControlMode.PercentOutput, 1);

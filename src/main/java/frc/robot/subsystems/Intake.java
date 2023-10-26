@@ -92,7 +92,7 @@ public class Intake extends SubsystemBase {
   // Move both the lower and upper arm to the desired position
   public void setArmPosition(double lower,double upper) {
     Position_LOW = Intake.m_encoder_low.getPosition();
-    Position_HIGH = Intake.m_encoder_high.getPosition();
+    //Position_HIGH = Intake.m_encoder_high.getPosition();
 
     double tempLow = Position_LOW + (lower * Constants.Intake.fineGrainDistance);
     double tempHigh = Position_HIGH + (upper * Constants.Intake.fineGrainDistance);

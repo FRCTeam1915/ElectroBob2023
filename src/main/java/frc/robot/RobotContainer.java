@@ -20,8 +20,8 @@ import frc.robot.commands.IntakeBall;
 import frc.robot.commands.MoveIntake;
 import frc.robot.commands.fineGrain;
 import frc.robot.commands.gyro_reset;
+import frc.robot.commands.holdButton;
 import frc.robot.commands.tayneDrop;
-import frc.robot.commands.tayneShoot;
 import frc.robot.commands.tayneTake;
 import frc.robot.commands.xForm;
 //import frc.robot.commands.tayneTakeIn;
@@ -49,6 +49,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -162,9 +163,7 @@ public class RobotContainer {
 */
 
 
-/*
-    UsbCamera camera = CameraServer.startAutomaticCapture();
-    camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
+    /* 
     camera = CameraServer.startAutomaticCapture();
     camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
 */
@@ -257,8 +256,8 @@ public class RobotContainer {
     leftBumper.whileTrue(new tayneDrop(tayke, true).repeatedly());
 
     Trigger aButton = m_IntakeController.a();
-    aButton.whileTrue(new tayneShoot(tayke, true).repeatedly());
-    //aButton.onTrue(new DriveToDistance(driveTrain).repeatedly());
+    aButton.onTrue(new holdButton(tayke, true).repeatedly());
+    aButton.onFalse(new holdButton(tayke, false).repeatedly());
 
     Trigger xbutton = m_driverController.x();
     xbutton.whileTrue(new xForm(driveTrain));

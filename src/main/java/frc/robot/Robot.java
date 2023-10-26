@@ -9,6 +9,9 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -48,7 +51,10 @@ public class Robot extends TimedRobot {
 
 
     
-    
+    UsbCamera camera = CameraServer.startAutomaticCapture();
+    camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
+    camera.setPixelFormat(PixelFormat.kMJPEG);
+    camera.setFPS(10);
  
         // initialize motor
         //m_motor = new CANSparkMax(deviceID, MotorType.kBrushless);
