@@ -1,4 +1,6 @@
 # This is a basic workflow to build robot code.
+# example taken from 
+# https://docs.wpilib.org/en/stable/docs/software/advanced-gradlerio/robot-code-ci.html
 
 name: CI
 
